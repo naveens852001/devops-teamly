@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@400..700&display=swap');
+/* Centering and aligning the welcome message and image properly */
+/* Other existing styles */
+
+.btn-signin:hover{
+    background-color: #000;
+    color: #fff!important;
+    transition: 0.4s all
+}
+
+ul li a Link {
+    list-style: none!important;
+}
+
+
+ 
+  
+.react-calendar{
+  background-color: rgba(245, 245, 245, 0.311)!important;
+}
+@media (max-width: 1008px) {
+    ul li:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+
+
+@media (max-width: 639px) {
+  /* Adjust icon sizes */
+  .icons {
+    font-size: 35px; /* Already present */
+  }
+
+  /* Make navigation text smaller and prevent text wrapping */
+  .react-calendar__navigation {
+    font-size: 10px;
+    white-space: nowrap; /* Already present */
+  }
+
+  /* Reduce padding/margins in calendar tiles for smaller screens */
+  .react-calendar__tile {
+    padding: 6px; /* Adjust tile padding for better spacing */
+  }
+
+  /* Adjust the size of the calendar itself */
+  .react-calendar {
+    font-size: 12px; /* Smaller font size for the whole calendar */
+  }
+
+  /* Make buttons (e.g., next/previous month) more compact */
+  .react-calendar__navigation button {
+    min-width: 30px; /* Smaller buttons for navigation */
+  }
+
+  /* Adjust the calendar weekdays and day labels */
+  .react-calendar__month-view__weekdays {
+    font-size: 10px; /* Smaller font for weekdays */
+  }
+
+  .react-calendar__month-view__days__day {
+    font-size: 12px; /* Smaller font for day numbers */
+  }
+
+  /* Handle any overflow by shrinking elements in the calendar */
+  .react-calendar__month-view__days__day--neighboringMonth {
+    font-size: 10px;
+  }
+
+  /* Prevent overflow in the calendar navigation bar */
+  .react-calendar__navigation__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .event-marker{
+    display: none;
+    color: #000!important;
+  }
+  .list-admin-name{
+    font-size: 12px;
+  }
+  table {
+    font-size: 0.875rem; /* Slightly smaller font for better fit */
+  }
+
+  .texts-fonts{
+    font-size: 1rem;
+  }
+  .pending-leave{
+    padding: 0px 0px 0px 5px;
+  }
+ 
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+

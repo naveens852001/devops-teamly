@@ -1,0 +1,14 @@
+
+  
+@media (max-width: 639px) {
+.employee-list-heading{
+    font-size: 1.5rem;
+}
+
+.add-employee-btn {
+    font-size: 12px;
+    
+}
+
+
+}
