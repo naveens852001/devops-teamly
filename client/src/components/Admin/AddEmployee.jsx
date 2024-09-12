@@ -36,6 +36,7 @@ const AddEmployee = () => {
         }
     })
     .then(result => {
+      console.log(result);
         if(result.data.Status) {
             navigate('/dashboard/employee');
         } else {

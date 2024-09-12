@@ -57,26 +57,24 @@ router.get("/admin/:id", getAdmin);
 router.put("/edit_admin/:id", editAdmin);
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, "Public/images");
+    destination:  (req, file, cb) => {
+     return   cb(null, "../client/public/images");
     },
     filename: (req, file, cb) => {
-        cb(
+      return  cb(
             null,
-            file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+            `${Date.now()}-${file.originalname}`
         );
     },
 });
 
-const upload = multer({
-    storage: storage,
-});
+const upload = multer({ storage});
 
 router.get('/departments', (req, res) => {
     res.send(['IT', 'Software', 'Law', 'Finance']); // Example departments
   });
 
-router.post("/add_employee", upload.single("image"), addEmployee);
+router.post("/add_employee", upload.single("image"),addEmployee);
 router.put("/edit_employee/:id", editEmployee);
 
 router.delete("/delete_employee/:id", deleteEmployee);

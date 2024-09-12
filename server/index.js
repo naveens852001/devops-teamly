@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const http = require("http");
+const path = require("path");
 const { Server } = require("socket.io"); // Correct way to import Socket.IO
 
 
@@ -22,6 +23,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("Public"));
+app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
+
+
 
 app.use(
   cors({
@@ -74,6 +78,7 @@ app.use("/", require("./routes/authRoutes"));
 app.use("/", require("./routes/empRoutes"));
 app.use("/", require("./routes/paymentRoutes")); // Handle checkout routes under '/checkout'
 app.get("/getkey",(req,res)=>res.status(200).json({key:process.env.RAZORPAY_API_KEY}))
+
 // JWT verification middleware
 const verifyuser = (req, res, next) => {
   const token = req.cookies.token;

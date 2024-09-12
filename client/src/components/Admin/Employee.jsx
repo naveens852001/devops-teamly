@@ -123,10 +123,11 @@ const Employee = () => {
 
                 <div className="font-bold text-gray-800 mb-2">Image:</div>
                 <img
-                  src={`${apiUrl}/images/${employee.image}`}
-                  alt={employee.name}
-                  className="w-24 h-24 object-cover rounded-md shadow-sm mb-4"
-                />
+  src={`${apiUrl}/images/${employee.image}`}
+  alt={employee.name}
+  className="w-24 h-24 object-cover rounded-md shadow-sm mb-4"
+/>
+
 
                 <div className="font-bold text-gray-800 mb-2">Email:</div>
                 <div className="mb-4">{employee.email}</div>
