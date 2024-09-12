@@ -11,8 +11,8 @@ import { SlCalender } from "react-icons/sl";
 import { MdOutlineEventAvailable } from "react-icons/md";
 import { PiChalkboardSimpleDuotone } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
-import { IoIosLogOut ,IoMdChatbubbles} from "react-icons/io";
-import './CSS/responsive.css';
+import { IoIosLogOut, IoMdChatbubbles } from "react-icons/io";
+import "./CSS/responsive.css";
 
 const Dashboard = () => {
   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
@@ -50,12 +50,14 @@ const Dashboard = () => {
                 to="/dashboard"
                 className="flex items-center text-white px-2 py-1 hover:bg-gray-700 rounded no-underline"
               >
-                <abbr title="Dashboard" className="px-2 icons text-xl mobile-tooltip">
-      <BsSpeedometer2 />
-    </abbr>
+                <abbr
+                  title="Dashboard"
+                  className="px-2 icons text-xl mobile-tooltip"
+                >
+                  <BsSpeedometer2 />
+                </abbr>
                 <span className="hidden sm:inline">Dashboard</span>
                 {/* Custom tooltip */}
-    
               </Link>
             </li>
             <li>
@@ -64,8 +66,7 @@ const Dashboard = () => {
                 className="flex items-center text-white px-2 py-1 hover:bg-gray-700 rounded no-underline"
               >
                 <span className="px-2 icons text-xl">
-                <IoMdChatbubbles />
-
+                  <IoMdChatbubbles />
                 </span>
                 <span className="hidden sm:inline">Chat-Teamly</span>
               </Link>
@@ -151,7 +152,7 @@ const Dashboard = () => {
           </ul>
 
           <div className="mt-4 contact-admin-line   pt-4 px-2 text-center text-xs">
-            To Add More Admins, 
+            To Add More Admins,
             <br /> Please Contact the Super Admin.
           </div>
         </div>

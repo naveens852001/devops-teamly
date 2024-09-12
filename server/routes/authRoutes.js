@@ -36,6 +36,8 @@ const {
     AddtrainingMaterial,
     deleteMaterial,
     upcomingleaves,
+    forgotpassword,
+    resetPassword
 } = require("../controllers/authController");
 const { TrainingMaterial } = require("../models/user");
 
@@ -101,4 +103,6 @@ router.get('/trainingModules',trainingMaterial);
 router.post('/trainingModules', AddtrainingMaterial);
 router.delete('/trainingModules/:id', deleteMaterial);
 router.get('/upcoming-leave', upcomingleaves);
+router.post('/forgot-password',forgotpassword);
+router.post('/reset-password',resetPassword);
 module.exports = router;

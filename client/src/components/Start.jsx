@@ -26,7 +26,7 @@ const Start = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-t from-[#fffbfbac] to-white">
-      <div className="rounded border shadow-md my-5   w-80 h-96 flex flex-col justify-between">
+      <div className="rounded border shadow-md my-5   w-80 h-full flex flex-col justify-between">
         <h2 className="font-montserrat text-3xl text-center my-3">Teamly</h2>
         <div className="flex justify-between items-center mb-6">
         <button

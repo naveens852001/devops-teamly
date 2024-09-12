@@ -92,7 +92,9 @@ ul li a Link {
     padding: 0px 0px 0px 5px;
   }
  
-
+.scrolls{
+  overflow-y: auto;
+}
 
 }
 

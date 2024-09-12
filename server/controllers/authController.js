@@ -1,6 +1,9 @@
 const jwt = require("jsonwebtoken");
 const crypto = require('crypto-js');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
+const bcrypt = require('bcrypt');
+
 // const { Server } = require("socket.io");
 
 const { userModel, newEmployeeModel, LeaveModel, eventModel, Position, TrainingModule, empModule } = require("../models/user");
@@ -26,7 +29,7 @@ const loginUser = async (req, res) => {
         if (match) {
             const token = jwt.sign(
                 { email: user.email, id: user._id, role: "admin" },
-                process.env.SECRET_KEY, 
+                process.env.SECRET_KEY,
                 { expiresIn: "1d" }
             );
             // io.emit('register', userId);
@@ -146,9 +149,8 @@ const registerAdmin = async (req, res) => {
             !name ||
             !email ||
             !password ||
-            !salary ||
-            !address ||
-            !category
+            !address
+
         ) {
             return res.json({
                 Error: `Input Argument is required`,
@@ -170,9 +172,7 @@ const registerAdmin = async (req, res) => {
             name,
             email,
             password: hashedPassword,
-            salary,
             address,
-            category,
             position,
             image: req.file ?
                 req.file.filename : '',
@@ -481,30 +481,102 @@ const deleteMaterial = async (req, res) => {
 }
 const upcomingleaves = async (req, res) => {
     try {
-      const today = new Date();
-      const thirtyDaysAgo = new Date();
-      thirtyDaysAgo.setDate(today.getDate() - 30);
-      const thirtyDaysFromNow = new Date();
-      thirtyDaysFromNow.setDate(today.getDate() + 30);
-  
-      // Fetch leaves within the next 30 days and past 30 days
-      const leaves = await LeaveModel.find({
-        $or: [
-          {
-            fromdate: { $gte: today, $lte: thirtyDaysFromNow } // Upcoming leaves
-          },
-          {
-            todate: { $gte: thirtyDaysAgo, $lte: today } // Past leaves
-          }
-        ]
-      }).sort({ fromdate: 1 }).exec();
-  
-      res.json(leaves);
+        const today = new Date();
+        const thirtyDaysAgo = new Date();
+        thirtyDaysAgo.setDate(today.getDate() - 30);
+        const thirtyDaysFromNow = new Date();
+        thirtyDaysFromNow.setDate(today.getDate() + 30);
+
+        // Fetch leaves within the next 30 days and past 30 days
+        const leaves = await LeaveModel.find({
+            $or: [
+                {
+                    fromdate: { $gte: today, $lte: thirtyDaysFromNow } // Upcoming leaves
+                },
+                {
+                    todate: { $gte: thirtyDaysAgo, $lte: today } // Past leaves
+                }
+            ]
+        }).sort({ fromdate: 1 }).exec();
+
+        res.json(leaves);
     } catch (error) {
-      res.status(500).json({ message: 'Error fetching leave data', error });
+        res.status(500).json({ message: 'Error fetching leave data', error });
     }
-  };
-  
+};
+
+// Setup Nodemailer transporter
+const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+  });
+
+const forgotpassword= async (req, res) => {
+    const { email } = req.body;
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required' });
+    }
+
+    try {
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Create a reset token
+        const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+
+        // Send reset email
+        const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
+
+        await transporter.sendMail({
+            to: email,
+            subject: 'Password Reset Request',
+            html: `<p>You requested a password reset. Click <a href="${resetLink}">here</a> to reset your password.</p>`
+        });
+
+        res.json({ message: 'Password reset link sent' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+// Endpoint to reset the password
+const resetPassword = async (req, res) => {
+    const { token, newPassword } = req.body;
+
+    if (!token || !newPassword) {
+        return res.status(400).json({ error: 'Token and new password are required' });
+    }
+
+    try {
+        // Verify token
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        const userId = decoded.id;
+
+        // Find user
+        const user = await userModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        // Update password
+        user.password = await bcrypt.hash(newPassword, 10);
+        await user.save();
+
+        res.json({ message: 'Password has been successfully reset' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+
 module.exports = {
     addEmployee,
     getAdmin,
@@ -539,6 +611,8 @@ module.exports = {
     AddtrainingMaterial,
     deleteMaterial,
     upcomingleaves,
+    forgotpassword,
+    resetPassword
 };
 
 

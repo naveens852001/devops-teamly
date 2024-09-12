@@ -155,7 +155,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container mx-auto h-screen overflow-y-auto p-4">
+    <div className="container mx-auto h-screen scrolls p-4">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
         <div className="bg-cyan-700 h-32 rounded-lg text-white p-4 hover:shadow-lg flex flex-col justify-center transform transition-transform duration-300 hover:scale-105">
           <div className="flex items-center">
@@ -246,8 +246,8 @@ const Home = () => {
         <Calendar tileContent={renderTileContent} className="w-full" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2  gap-4 ">
-        <div className="  h-30  bg-white  rounded-lg shadow-md px-3 transform transition-transform duration-300 hover:scale-105">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+        <div className="  h-40  overflow-y-auto   bg-white  rounded-lg shadow-md px-3 ">
           <h4 className="text-center text-xl font-montserrat mb-3  py-2">
             List of Admins
           </h4>
@@ -272,7 +272,7 @@ const Home = () => {
             </table>
           </div>
         </div>
-        <div className="overflow-y-auto h-36 bg-gray-100 transform transition-transform duration-300 hover:scale-105 rounded-lg shadow-md px-3 sm:px-2">
+        <div className="overflow-y-auto h-40 bg-gray-100 rounded-lg shadow-md px-3 sm:px-2">
           <h4 className="text-center texts-fonts text-xl font-montserrat mb-3 py-2">
             Pending Leave Requests
           </h4>

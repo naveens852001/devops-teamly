@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-
-    const navigate=useNavigate()
+    const navigate = useNavigate();
+    
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
-        salary: '',
         address: '',
-        category: '',
         position: ''
     });
 
@@ -31,8 +29,7 @@ const Registration = () => {
             const response = await axios.post(`${apiUrl}/register`, formData);
             if (response.data.Status) {
                 toast.success("Registration successful!");
-                navigate('/')
-                // Optionally, redirect the user to another page after successful registration
+                navigate('/');
             } else {
                 toast.error("Registration failed. Please try again.");
             }
@@ -43,38 +40,39 @@ const Registration = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <h2>Registration</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Name</label>
-                    <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} required />
+        <div className="container mx-auto my-10 p-6 max-w-lg bg-gray-200 shadow-md rounded-lg">
+            <h2 className="text-2xl font-bold mb-6 text-gray-700 text-center">Register</h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-600">Name</label>
+                    <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required 
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="email" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-600">Email</label>
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange} required />
+                <div>
+                    <label htmlFor="password" className="block text-sm font-medium text-gray-600">Password</label>
+                    <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} required
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="salary" className="form-label">Salary</label>
-                    <input type="number" className="form-control" id="salary" name="salary" value={formData.salary} onChange={handleChange} required />
+                
+                <div>
+                    <label htmlFor="address" className="block text-sm font-medium text-gray-600">Address</label>
+                    <input type="text" id="address" name="address" value={formData.address} onChange={handleChange} required
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="address" className="form-label">Address</label>
-                    <input type="text" className="form-control" id="address" name="address" value={formData.address} onChange={handleChange} required />
+               
+                <div>
+                    <label htmlFor="position" className="block text-sm font-medium text-gray-600">Position</label>
+                    <input type="text" id="position" name="position" value={formData.position} onChange={handleChange} required
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="category" className="form-label">Category</label>
-                    <input type="text" className="form-control" id="category" name="category" value={formData.category} onChange={handleChange} required />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="position" className="form-label">Position</label>
-                    <input type="text" className="form-control" id="position" name="position" value={formData.position} onChange={handleChange} required />
-                </div>
-                <button type="submit" className="btn btn-primary">Register</button>
+                <button type="submit" className="w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                    Register
+                </button>
             </form>
         </div>
     );

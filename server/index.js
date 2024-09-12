@@ -6,7 +6,11 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const http = require("http");
 const path = require("path");
-const { Server } = require("socket.io"); // Correct way to import Socket.IO
+const { Server } = require("socket.io"); 
+
+
+
+
 
 
 // Database connection
@@ -93,6 +97,9 @@ const verifyuser = (req, res, next) => {
     res.json({ Status: false, Error: "Not Authenticated" });
   }
 };
+
+
+
 
 app.get("/verify", verifyuser, (req, res) => {
   return res.json({ Status: true, role: req.role, id: req.id });
