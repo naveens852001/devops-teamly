@@ -1,9 +1,8 @@
-import React, { createContext, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import React, { createContext, useState, useEffect, useMemo } from 'react';
 
-// Create the context
 export const UserContext = createContext();
 
-// Create a provider component
 export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(sessionStorage.getItem('userId') || null);
 
@@ -13,9 +12,16 @@ export const UserProvider = ({ children }) => {
     }
   }, [userId]);
 
+  const value = useMemo(() => ({ userId, setUserId }), [userId]);
+
   return (
-    <UserContext.Provider value={{ userId, setUserId }}>
+    <UserContext.Provider value={value}>
       {children}
     </UserContext.Provider>
   );
 };
+
+UserProvider.propTypes = {
+  children: PropTypes.node.isRequired,  // Add prop validation for 'children'
+};
+
