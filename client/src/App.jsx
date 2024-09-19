@@ -79,7 +79,8 @@ function App() {
             <Route path='EventSchedule/:id' element={<EventSchedule />} />
             <Route path='TrainingModules/:id' element={<ModuleDashboard />} />
           </Route>
-
+{/* Catch-all route */}
+<Route path='*' element={<NotFound />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>
