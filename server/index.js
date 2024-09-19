@@ -33,10 +33,9 @@ app.use('/images', express.static(path.join(__dirname, '../client/public/images'
 app.use(express.static(path.join(__dirname, 'dist')));
 
 // Serve index.html for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
 
 const allowedOrigins = [
   'https://hrms.devopsfarm.in',  // Production URL

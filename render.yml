@@ -6,4 +6,6 @@ services:
     rootDir: server 
     buildCommand: 'npm install'
     startCommand: 'node index.js'
-    
+    routes:
+      - src: /static/*
+        dest: /dist/static/*
