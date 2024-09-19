@@ -29,7 +29,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("Public"));
 app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
+// Serve static files from the 'dist' directory
+app.use(express.static(path.join(__dirname, 'dist')));
 
+// Serve index.html for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 
 const allowedOrigins = [
