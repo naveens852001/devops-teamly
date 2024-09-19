@@ -1,16 +1,8 @@
 services:
   - type: web
-    name: client-service
+    name: my-backend
     env: node
-    buildCommand: cd client && npm install
-    startCommand: cd client && npm start
+    buildCommand: "npm install"
+    startCommand: "node server/index.js"  # Adjust this path according to your project structure
     plan: free
-    # Optionally configure environment variables, etc.
-
-  - type: web
-    name: server-service
-    env: node
-    buildCommand: cd server && npm install
-    startCommand: cd server && node index.js
-    plan: free
-    # Optionally configure environment variables, etc.
+    region: oregon
