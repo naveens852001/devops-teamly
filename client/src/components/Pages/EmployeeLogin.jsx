@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "../../style.css";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -63,6 +63,11 @@ const EmployeeLogin = () => {
               className="btn-signin rounded-full text-black text-xs font-bold px-[45px] py-[12px]  uppercase cursor-pointer border border-black">
               Sign In
             </button>
+            <Link
+              to="/emp-forgot-password"
+              className="mt-2 text-sm text-gray-800 no-underline  hover:text-black">
+              Forgot Password?
+            </Link>
           </form>
         </div>
       </div>

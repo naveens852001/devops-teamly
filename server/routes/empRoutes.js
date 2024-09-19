@@ -23,7 +23,9 @@ const {
     empHistoryDelete,
     empModuleStatus,
     getempModule,
-    incompleteModule
+    incompleteModule,
+    Empforgotpassword,
+    EmpresetPassword
     
 } = require("../controllers/empController");
 const { empModule } = require("../models/user");
@@ -47,7 +49,8 @@ router.delete("/employee/empHistoryDelete/:id",empHistoryDelete);
 router.post("/employee/completedModules", empModuleStatus);
 router.get("/employee/:employeeId/completedModules", getempModule);
 router.get('/employee/:employeeId/incompleteModules',incompleteModule);
-
+router.post('/emp-forgot-password', Empforgotpassword);
+router.post('/emp-reset-password', EmpresetPassword);
 
 router.get("/emp_Logout",async (req,res)=>{
     try {

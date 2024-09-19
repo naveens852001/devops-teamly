@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+const PORT=process.env.PORT||8000;
 const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -106,7 +107,7 @@ app.get("/verify", verifyuser, (req, res) => {
 });
 
 // Start server
-server.listen(process.env.PORT || 8000, () => {
+server.listen(PORT || 8000, () => {
   console.log(`Listening at port ${process.env.PORT || 8000}`);
 });
 

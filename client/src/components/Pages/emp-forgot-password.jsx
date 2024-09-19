@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-function ForgotPassword() {
+function EmpForgotPassword() {
   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${apiUrl}/forgot-password`, { email });
+      const response = await axios.post(`${apiUrl}/emp-forgot-password`, { email });
       if (response.data.message) {
         toast.success("Password reset link has been sent to your email.");
         navigate("/");
@@ -51,4 +51,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default EmpForgotPassword;

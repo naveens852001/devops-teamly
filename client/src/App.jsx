@@ -31,6 +31,7 @@ import { UserProvider } from './UserContext';
 import EmployeeChat from './components/Employee/chat-teamly.jsx';
 import ForgotPassword from './components/Pages/forgot-password.jsx';
 import ResetPassword from './components/Pages/ResetPassword.jsx';
+import EmpForgotPassword from './components/Pages/emp-forgot-password.jsx';
 
 const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
@@ -48,6 +49,8 @@ function App() {
           <Route path='/adminRegister' element={<AdminRegistration />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/emp-forgot-password" element={<EmpForgotPassword/>} />
+          <Route path="/emp-reset-password" element={<ResetPassword />} />
 
           <Route path='/dashboard' element={
             <PrivateRoute>

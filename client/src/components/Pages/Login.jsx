@@ -63,7 +63,7 @@ function Login() {
             {/* Add Forgot Password link */}
             <Link
               to="/forgot-password"
-              className="mt-2 text-sm text-blue-600 underline hover:text-blue-800">
+              className="mt-2 text-sm text-gray-800 no-underline  hover:text-black">
               Forgot Password?
             </Link>
           </form>

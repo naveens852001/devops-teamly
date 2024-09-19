@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 const { newEmployeeModel, LeaveModel, HisotryModel,empModule, TrainingModule } = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 require('dotenv').config();
-
+const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
 
 
 const emplogin = async (req, res) => {
@@ -146,6 +147,77 @@ const empHistoryDelete =async(req,res)=>{
         res.status(500).json({ success: false, message: 'Internal server error' });
       }
     };
+    const transporter = nodemailer.createTransport({
+        host: process.env.EMAIL_HOST,
+        port: process.env.EMAIL_PORT,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+      });
+
+      const Empforgotpassword = async (req, res) => {
+        const { email } = req.body;
+        if (!email) {
+            return res.status(400).json({ error: 'Email is required' });
+        }
+    
+        try {
+            const user = await newEmployeeModel.findOne({ email: new RegExp(`^${email}$`, 'i') });
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+    
+            // Create a reset token
+            const resetToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY, { expiresIn: '1h' });
+    
+            // Send reset email
+            const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
+    
+            await transporter.sendMail({
+                to: email,
+                subject: 'Password Reset Request',
+                html: `<p>You requested a password reset. Click <a href="${resetLink}">here</a> to reset your password. The link will expire in 1 hour.</p>`
+            });
+    
+            res.json({ message: 'Password reset link sent' });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    };
+    
+    
+    // Endpoint to reset the password
+    const EmpresetPassword = async (req, res) => {
+        const { token, newPassword } = req.body;
+    
+        if (!token || !newPassword) {
+            return res.status(400).json({ error: 'Token and new password are required' });
+        }
+    
+        try {
+            // Verify token
+            const decoded = jwt.verify(token, process.env.SECRET_KEY);
+            const userId = decoded.id;
+    
+            // Find user
+            const user = await newEmployeeModel.findById(userId);
+            if (!user) {
+                return res.status(404).json({ error: 'Employee not found' });
+            }
+    
+            // Update password
+            user.password = await bcrypt.hash(newPassword, 10);
+            await user.save();
+    
+            res.json({ message: 'Password has been successfully reset' });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    };
+    
     
 module.exports = {
     emplogin,
@@ -159,6 +231,8 @@ module.exports = {
     empHistoryDelete,
     getempModule,
     empModuleStatus,
-    incompleteModule
+    incompleteModule,
+    Empforgotpassword,
+    EmpresetPassword,
 
 }
