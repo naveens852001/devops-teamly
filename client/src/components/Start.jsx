@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AdminLogin from './Pages/Login'
 import EmployeeLogin from './Pages/EmployeeLogin'
 const Start = () => {
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
   useEffect(() => {

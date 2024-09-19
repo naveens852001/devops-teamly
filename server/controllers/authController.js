@@ -9,37 +9,56 @@ const bcrypt = require('bcrypt');
 const { userModel, newEmployeeModel, LeaveModel, eventModel, Position, TrainingModule, empModule } = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 
+const jwt = require('jsonwebtoken');
+const userModel = require('./models/userModel'); // Ensure correct path
+const { comparePassword } = require('./utils/auth'); // Ensure correct path
 
 const loginUser = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        if (!email || !password) {
-            return res.json({
-                error: "Please Enter Your Credential To Continue",
-            });
-        }
-        const user = await userModel.findOne({ email: email });
-        if (!user) {
-            return res.json({
-                error: "User not found",
-            });
-        }
+  try {
+    const { email, password } = req.body;
 
-        const match = await comparePassword(password, user.password);
-        if (match) {
-            const token = jwt.sign(
-                { email: user.email, id: user._id, role: "admin" },
-                process.env.SECRET_KEY,
-                { expiresIn: "1d" }
-            );
-            // io.emit('register', userId);
-            res.cookie("token", token).json({ Status: true, Result: user, id: user._id });
-        } else {
-            res.json({ error: "Please Check Your Password" });
-        }
-    } catch (error) {
-        console.log(error);
+    // Check for missing credentials
+    if (!email || !password) {
+      return res.status(400).json({
+        error: "Please Enter Your Credentials To Continue",
+      });
     }
+
+    // Find user by email
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        error: "User not found",
+      });
+    }
+
+    // Compare provided password with stored hash
+    const match = await comparePassword(password, user.password);
+    if (match) {
+      // Create JWT token
+      const token = jwt.sign(
+        { email: user.email, id: user._id, role: "admin" },
+        process.env.SECRET_KEY,
+        { expiresIn: "1d" }
+      );
+
+      // Set the token cookie with security options
+      res.cookie("token", token, {
+        httpOnly: true,   // Ensure cookie is accessible only via HTTP(S)
+        secure: process.env.NODE_ENV === 'production', // Set to true in production
+        sameSite: 'None', // Required for cross-site cookies
+        maxAge: 24 * 60 * 60 * 1000 // Cookie expiration (1 day)
+      });
+
+      // Respond with user data and status
+      return res.status(200).json({ Status: true, Result: user, id: user._id });
+    } else {
+      return res.status(401).json({ error: "Incorrect password" });
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 const getProfile = (req, res) => {

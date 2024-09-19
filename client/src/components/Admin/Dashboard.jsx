@@ -15,7 +15,7 @@ import { IoIosLogOut, IoMdChatbubbles } from "react-icons/io";
 import "./CSS/responsive.css";
 
 const Dashboard = () => {
-  const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
 
   const navigate = useNavigate();
   const { userId, setUserId } = useContext(UserContext);

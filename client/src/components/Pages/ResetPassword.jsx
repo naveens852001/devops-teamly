@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 function ResetPassword() {
-  const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [token, setToken] = useState(null);

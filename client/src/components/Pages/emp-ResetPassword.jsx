@@ -5,7 +5,7 @@ import { toast } from 'react-hot-toast';
 
 
 function EmpResetPassword() {
-  const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [token, setToken] = useState(null);

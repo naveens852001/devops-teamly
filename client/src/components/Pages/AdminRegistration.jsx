@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
-    const apiUrl= import.meta.env.VITE_API_URL;
+   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
 
     const navigate = useNavigate();
     

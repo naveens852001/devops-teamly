@@ -5,7 +5,8 @@ import { useNavigate, Link } from "react-router-dom"; // Import Link for navigat
 import { UserContext } from "../../UserContext";
 
 function Login() {
-  const apiUrl = import.meta.env.VITE_API_URL ;
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
+
   const navigate = useNavigate();
   const [data, setData] = useState({ email: "", password: "" });
   const { setUserId } = useContext(UserContext);

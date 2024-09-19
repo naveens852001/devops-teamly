@@ -96,14 +96,20 @@ app.get("/getkey",(req,res)=>res.status(200).json({key:process.env.RAZORPAY_API_
 // JWT verification middleware
 const verifyuser = (req, res, next) => {
   const token = req.cookies.token;
+  console.log('Received Token:', token);
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
-      if (error) return res.json({ Status: false, Error: "Wrong Token" });
+      if (error) {
+        console.error('Token Verification Error:', error); // Debug log
+        return res.json({ Status: false, Error: "Wrong Token" });
+      }
+      
       req.id = decoded.id;
       req.role = decoded.role;
       next();
     });
   } else {
+    console.log('No Token Found'); 
     res.json({ Status: false, Error: "Not Authenticated" });
   }
 };
