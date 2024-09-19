@@ -10,8 +10,7 @@ const { userModel, newEmployeeModel, LeaveModel, eventModel, Position, TrainingM
 const { hashPassword, comparePassword } = require("../helpers/auth");
 
 
-const userModel = require('./models/userModel'); // Ensure correct path
-const { comparePassword } = require('./utils/auth'); // Ensure correct path
+
 
 const loginUser = async (req, res) => {
   try {
