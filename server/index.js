@@ -33,7 +33,7 @@ app.use('/images', express.static(path.join(__dirname, '../client/public/images'
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Allow only this origin
+    origin: `https://hrms.devopsfarm.in`, // Allow only this origin
     credentials: true, // Allow credentials if needed
   })
 );
@@ -46,7 +46,7 @@ const server = http.createServer(app);
 // Initialize Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: `https://hrms.devopsfarm.in`,
     methods: ["GET", "POST"],
     credentials: true,
   },
