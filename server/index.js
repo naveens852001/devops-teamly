@@ -15,11 +15,10 @@ const { Server } = require("socket.io");
 
 
 // Database connection
-const dbURI = process.env.MONGODB_URL;
-mongoose
-  .connect(dbURI, {})
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log("MongoDB connection error:", err));
+const MONGODB_URL= process.env.MONGODB_URL;
+mongoose.connect(MONGODB_URL)
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 const app = express();
 
