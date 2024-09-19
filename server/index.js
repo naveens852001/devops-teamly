@@ -29,12 +29,22 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("Public"));
 app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
-
+const allowedOrigins = [
+  'https://hrms.devopsfarm.in',  // Production URL
+  'http://localhost:5173'        // Vite development URL
+];
 
 app.use(
   cors({
-    origin: `https://hrms.devopsfarm.in`, // Allow only this origin
-    credentials: true, // Allow credentials if needed
+    origin: function (origin, callback) {
+      // Check if the request origin is in the allowed origins list or if no origin (for non-browser requests)
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,  // Allow credentials
   })
 );
 

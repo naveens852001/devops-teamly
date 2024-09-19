@@ -42,10 +42,24 @@ const {
 const { TrainingMaterial } = require("../models/user");
 
 //Middleware
-router.use(cors({
-    credentials: true,
-    origin: 'http://localhost:5173', // Your frontend URL
-}));
+const allowedOrigins = [
+    'http://localhost:5173',      // Localhost for development
+    'https://hrms.devopsfarm.in'  // Production URL
+  ];
+
+  router.use(cors({
+    credentials: true, 
+    origin: function (origin, callback) {
+     
+      if (!origin) return callback(null, true);
+  
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));
 
 //Routes
 router.post("/login", loginUser);

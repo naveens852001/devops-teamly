@@ -30,12 +30,25 @@ const {
 } = require("../controllers/empController");
 const { empModule } = require("../models/user");
 
-router.use(
-    cors({
-        credentials: true,
-        origin: 'http://localhost:5173',
-    })
-);
+const allowedOrigins = [
+    'http://localhost:5173',      // Localhost for development
+    'https://hrms.devopsfarm.in'  // Production URL
+  ];
+  
+  // Set up CORS configuration
+  router.use(cors({
+    credentials: true, // Allow credentials if needed (for cookies, etc.)
+    origin: function (origin, callback) {
+      // Allow requests with no origin, such as mobile apps or curl requests
+      if (!origin) return callback(null, true);
+  
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));
 router.post("/employee/employee_login", emplogin);
 router.get("/employee/detail/:id",empdetail);
 router.post("/employee/leave_request",leaveReq);
