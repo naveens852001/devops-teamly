@@ -106,7 +106,7 @@ app.get("/verify", verifyuser, (req, res) => {
 });
 
 // Start server
-server.listen(PORT || 8000, () => {
-  console.log(`Listening at port ${process.env.PORT || 8000}`);
+server.listen(PORT || 10000, () => {
+  console.log(`Listening at port ${process.env.PORT || 10000}`);
 });
 
