@@ -29,12 +29,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("Public"));
 app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
-app.use(express.static(path.join(__dirname, 'client')));
+
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'index.html'));
-})
 const allowedOrigins = [
   'https://hrms.devopsfarm.in',  // Production URL
   'http://localhost:5173'        // Vite development URL
@@ -130,6 +128,18 @@ const verifyuser = (req, res, next) => {
 app.get("/verify", verifyuser, (req, res) => {
   return res.json({ Status: true, role: req.role, id: req.id });
 });
+
+// Serve the React app for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 
 // Start server
 server.listen(PORT || 10000, () => {
