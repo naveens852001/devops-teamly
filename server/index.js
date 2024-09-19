@@ -30,7 +30,6 @@ app.use(express.static("Public"));
 app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
 
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
 
 const allowedOrigins = [
@@ -129,16 +128,8 @@ app.get("/verify", verifyuser, (req, res) => {
   return res.json({ Status: true, role: req.role, id: req.id });
 });
 
-// Serve the React app for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
+
 
 
 // Start server
