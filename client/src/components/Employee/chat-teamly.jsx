@@ -9,7 +9,7 @@ function EmployeeChat({ employeeId }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [socketId, setSocketId] = useState(null); // State to store socketId
-  const socket = useMemo(() => io("http://localhost:8000"), []);
+  const socket = useMemo(() => io(`http://localhost:10000`), []);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {

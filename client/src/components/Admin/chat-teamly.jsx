@@ -5,11 +5,12 @@ import { TbPhoneCalling } from "react-icons/tb";
 import io from "socket.io-client";
 
 function Chatteamly() {
+   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [newMessages, setNewMessages] = useState([]);
   const [socketId, setSocketId] = useState("");
-  const socket = useMemo(() => io("http://localhost:8000"), []);
+  const socket = useMemo(() => io(`http://localhost:10000`), []);
 
   const messagesEndRef = useRef(null);
 
