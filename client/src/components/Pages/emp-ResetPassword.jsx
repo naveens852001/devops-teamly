@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 
 
 function EmpResetPassword() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [token, setToken] = useState(null);
@@ -25,7 +26,7 @@ function EmpResetPassword() {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/emp-reset-password', { password, token });
+      const response = await axios.post(`${apiUrl}/emp-reset-password`, { password, token });
       if (response.data.message) {
         toast.success("Password has been reset successfully.");
         navigate('/');

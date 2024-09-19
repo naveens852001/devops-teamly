@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 const LeaveReq = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+  const apiUrl = import.meta.env.VITE_API_URL ;
 
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [employee, setEmployee] = useState({});

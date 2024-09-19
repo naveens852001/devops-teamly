@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "../../style.css";
 
 const Home = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const [leaves, setLeaves] = useState({ upcoming: [], past: [] });
   const [adminTotal, setAdminTotal] = useState(0);

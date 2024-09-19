@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+  const apiUrl = import.meta.env.VITE_API_URL ;
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
  

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const AddEmployee = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [employee, setEmployee] = useState({
     name: "",
     email: "",

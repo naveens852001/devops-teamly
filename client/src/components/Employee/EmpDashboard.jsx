@@ -13,7 +13,7 @@ import { MdOutlineEventAvailable } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { IoIosLogOut ,IoMdChatbubbles} from "react-icons/io";
 const EmpDashboard = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const apiUrl = import.meta.env.VITE_API_URL ;
   const [employee, setEmployee] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();

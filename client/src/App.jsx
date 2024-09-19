@@ -33,7 +33,7 @@ import ForgotPassword from './components/Pages/forgot-password.jsx';
 import ResetPassword from './components/Pages/ResetPassword.jsx';
 import EmpForgotPassword from './components/Pages/emp-forgot-password.jsx';
 
-const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 axios.defaults.withCredentials = true;
 

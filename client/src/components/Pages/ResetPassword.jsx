@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
 function ResetPassword() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [token, setToken] = useState(null);
@@ -26,7 +27,7 @@ function ResetPassword() {
     console.log('Submitting password reset', { newPassword, token }); // Log the data being sent
 
     try {
-      const response = await axios.post('http://localhost:8000/reset-password', { newPassword, token }, {
+      const response = await axios.post(`${apiUrl}/reset-password`, { newPassword, token }, {
         headers: {
           'Content-Type': 'application/json'
         }

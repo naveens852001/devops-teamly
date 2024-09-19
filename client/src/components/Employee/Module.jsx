@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const ModuleDashboard = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const apiUrl = import.meta.env.VITE_API_URL ;
   const [trainingModules, setTrainingModules] = useState([]);
   const [completedModules, setCompletedModules] = useState([]);
   const [employeeDepartment, setEmployeeDepartment] = useState('');

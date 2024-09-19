@@ -6,7 +6,7 @@ import axios from "axios";
 import "../../style.css";
 
 const EmployeeDetail = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [employee, setEmployee] = useState({});
   const [pendingLeaveRequests, setPendingLeaveRequests] = useState([]);
   const [events, setEvents] = useState([]);

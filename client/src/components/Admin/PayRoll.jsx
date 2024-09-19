@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const PayrollDisplay = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const [payrolls, setPayrolls] = useState([]);
 
@@ -67,7 +67,7 @@ const PayrollDisplay = () => {
       // Fetch the Razorpay key and create order
       const {
         data: { key },
-      } = await axios.get("http://localhost:8000/getkey");
+      } = await axios.get(`${apiUrl}/getkey`);
       const {
         data: { order },
       } = await axios.post(`${apiUrl}/checkout`, {
@@ -84,7 +84,7 @@ const PayrollDisplay = () => {
         description: "Test Transaction",
         image: employeeDetails.image,
         order_id: order.id,
-        callback_url: "http://localhost:8000/paymentverification",
+        callback_url: `${apiUrl}/paymentverification`,
         name: employeeDetails.name, // Employee's name
         email: employeeDetails.email, // Employee's email
         contact: employeeDetails.contact, // Employee's contact number
