@@ -29,6 +29,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("Public"));
 app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 const allowedOrigins = [
   'https://hrms.devopsfarm.in',  // Production URL
   'http://localhost:5173'        // Vite development URL
