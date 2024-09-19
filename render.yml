@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: client-service
+    env: node
+    buildCommand: cd client && npm install
+    startCommand: cd client && npm start
+    plan: free
+    # Optionally configure environment variables, etc.
+
+  - type: web
+    name: server-service
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: cd server && node index.js
+    plan: free
+    # Optionally configure environment variables, etc.
