@@ -37,8 +37,11 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
+      // Debug logging to understand which origin is being rejected
+      console.log('Request Origin:', origin);
+      
       // Check if the request origin is in the allowed origins list or if no origin (for non-browser requests)
-      if (allowedOrigins.includes(origin) || !origin) {
+      if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error('Not allowed by CORS'));
@@ -47,6 +50,7 @@ app.use(
     credentials: true,  // Allow credentials
   })
 );
+
 
 const employeeSocketMap = new Map();
 
