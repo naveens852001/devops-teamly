@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const { userModel, newEmployeeModel, LeaveModel, eventModel, Position, TrainingModule, empModule } = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 
-const jwt = require('jsonwebtoken');
+
 const userModel = require('./models/userModel'); // Ensure correct path
 const { comparePassword } = require('./utils/auth'); // Ensure correct path
 
