@@ -1,8 +1,9 @@
 services:
   - type: web
-    name: my-backend
+    name: todo-backend
     env: node
-    buildCommand: "npm install"
-    startCommand: "node server/index.js"  # Adjust this path according to your project structure
     plan: free
-    region: oregon
+    rootDir: server 
+    buildCommand: 'npm install'
+    startCommand: 'node index.js'
+    
