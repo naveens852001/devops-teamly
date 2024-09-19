@@ -100,13 +100,6 @@ app.use("/", require("./routes/empRoutes"));
 app.use("/", require("./routes/paymentRoutes")); // Handle checkout routes under '/checkout'
 app.get("/getkey",(req,res)=>res.status(200).json({key:process.env.RAZORPAY_API_KEY}))
 
-// Serve static files from the 'client/dist' directory
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
-
-// Serve index.html for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
 
 
 
