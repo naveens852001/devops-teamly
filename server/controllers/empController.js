@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { newEmployeeModel, LeaveModel, HisotryModel,empModule, TrainingModule } = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 require('dotenv').config();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 
 

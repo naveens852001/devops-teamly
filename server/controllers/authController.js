@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const crypto = require('crypto-js');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // const { Server } = require("socket.io");
 
