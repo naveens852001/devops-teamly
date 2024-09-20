@@ -11,11 +11,5 @@
       "destination": "https://hrms.devopsfarm.in",
       "permanent": true
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
   ]
 }
