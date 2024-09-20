@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    
-    "dev": "nodemon server/index.js",
-    "build":"npm install && npm install --prefix client && npm run build --prefix client",
-    "start": "nodemon server/index.js"
+    "scripts": {
+      
+      "dev": "nodemon server/index.js",
+      "build":"npm install && npm install --prefix client && npm run build --prefix client",
+      "start": "node server/index.js"
 
-  },
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",
