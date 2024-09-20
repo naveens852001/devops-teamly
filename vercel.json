@@ -1,8 +1,21 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/client/dist/index.html"
+      "source": "/(.*)", 
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/(.*)", 
+      "destination": "https://hrms.devopsfarm.in",
+      "permanent": true
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
