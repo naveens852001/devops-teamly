@@ -97,11 +97,13 @@ app.get("/verify", verifyUser, (req, res) => {
   return res.json({ Status: true, role: req.role, id: req.id });
 });
 
-// Serve index.html for React frontend routes (after all API routes)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, "../client/build")));
 
+// Fallback to serve index.html for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 // Start server
 server.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
