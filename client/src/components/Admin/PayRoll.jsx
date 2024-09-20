@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const PayrollDisplay = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
   const [payrolls, setPayrolls] = useState([]);
 

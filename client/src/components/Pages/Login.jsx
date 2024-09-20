@@ -16,8 +16,13 @@ function Login() {
   async function logUser(e) {
     e.preventDefault();
     const { email, password } = data;
+  
+    console.log('Logging in with:', data); // Log the data being sent
+  
     try {
       const result = await axios.post(`${apiUrl}/login`, { email, password });
+      console.log('Login result:', result.data); // Log the response
+  
       if (result.data.Status) {
         localStorage.setItem("valid", true);
         toast.success(`Login Successful. Welcome!`);
@@ -28,9 +33,11 @@ function Login() {
         toast.error("Failed To Login");
       }
     } catch (error) {
+      console.error('Error during login:', error); // Log the error for debugging
       toast.error(error.message);
     }
   }
+  
 
   return (
     <div>

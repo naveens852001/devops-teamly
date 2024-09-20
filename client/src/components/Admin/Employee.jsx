@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const Employee = () => {
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
   const [employees, setEmployees] = useState([]);
   const [salaryTotal, setSalaryTotal] = useState(0);
   const navigate = useNavigate();

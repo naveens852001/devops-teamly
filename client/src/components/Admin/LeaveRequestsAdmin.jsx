@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const LeaveRequestsAdmin = () => {
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [loading, setLoading] = useState(true);
