@@ -21,7 +21,7 @@ const app = express();
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
-      'https://hrms.devopsfarm.in',  // Production URL
+      'https://devopsfarm-in-hrms.onrender.com',  // Production URL
       'http://localhost:10000'        // Vite development URL
     ];
     console.log('Request Origin:', origin);
@@ -101,7 +101,7 @@ app.get("/verify", verifyUser, (req, res) => {
 
 
 app.use(express.static(path.join(__dirname,"../client/dist")))
-app.get("*",(_,res)=>{
+app.get("*",(req,res)=>{
   res.sendFile(path.resolve(__dirname,"../client/dist","index.html"));
 })
 // Start server
