@@ -22,6 +22,9 @@ mongoose.connect(MONGODB_URL)
 
 const app = express();
 
+
+
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -30,10 +33,9 @@ app.use(express.static(path.join(__dirname,"Public")));
 app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
 
 
+
 // Serve index.html for all other routes
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+
 
 const allowedOrigins = [
   'https://hrms.devopsfarm.in',  // Production URL
