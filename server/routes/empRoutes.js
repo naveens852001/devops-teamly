@@ -32,7 +32,8 @@ const { empModule } = require("../models/user");
 
 const allowedOrigins = [
     'http://localhost:10000',      // Localhost for development
-    'https://devopsfarm-in-hrms.onrender.com'  // Production URL
+    'https://devopsfarm-in-hrms.onrender.com',
+    'https://hrms.devopsfarm.in'
   ];
   
   // Set up CORS configuration

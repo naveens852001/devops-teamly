@@ -22,7 +22,8 @@ app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
       'https://devopsfarm-in-hrms.onrender.com',  // Production URL
-      'http://localhost:10000'        // Vite development URL
+      'http://localhost:10000',
+      'https://hrms.devopsfarm.in'
     ];
     console.log('Request Origin:', origin);
 
