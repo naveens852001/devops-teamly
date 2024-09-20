@@ -43,7 +43,7 @@ const { TrainingMaterial } = require("../models/user");
 
 //Middleware
 const allowedOrigins = [
-    'http://localhost:5173',      // Localhost for development
+    'http://localhost:10000',      // Localhost for development
     'https://hrms.devopsfarm.in'  // Production URL
   ];
 

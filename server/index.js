@@ -1,5 +1,5 @@
 const express = require("express");
-require("dotenv").config();
+require('dotenv').config();
 const PORT = process.env.PORT || 10000;
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -22,7 +22,7 @@ app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
       'https://hrms.devopsfarm.in',  // Production URL
-      'http://localhost:5173'        // Vite development URL
+      'http://localhost:10000'        // Vite development URL
     ];
     console.log('Request Origin:', origin);
 
@@ -38,10 +38,10 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "public")));
-app.use('/images', express.static(path.join(__dirname, '../client/public/images')));
+// const __dirname=path.resolve();
 
 // JWT verification middleware
+
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
   if (token) {
@@ -86,6 +86,8 @@ io.on("connection", (socket) => {
   });
 });
 
+
+
 // Routes
 app.use("/", require("./routes/authRoutes"));
 app.use("/", require("./routes/empRoutes"));
@@ -98,24 +100,10 @@ app.get("/verify", verifyUser, (req, res) => {
 });
 
 
-// Serve static files from the React app (dist folder)
-const distPath = path.join(__dirname, "../client/dist");
-app.use(express.static(distPath));
-
-// Debugging to check if `index.html` is available
-app.get("*", (req, res) => {
-  const indexFilePath = path.join(distPath, "index.html")
-  fs.access(indexFilePath, fs.constants.F_OK, (err) => {
-    if (err) {
-      console.error("index.html not found:", indexFilePath);
-      return res.status(404).send("index.html not found");
-    } else {
-      console.log("index.html found, sending file:", indexFilePath);
-      res.sendFile(indexFilePath);
-    }
-  });
-});
-
+app.use(express.static(path.join(__dirname,"../client/dist")))
+app.get("*",(_,res)=>{
+  res.sendFile(path.resolve(__dirname,"../client/dist","index.html"));
+})
 // Start server
 server.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);

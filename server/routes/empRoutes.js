@@ -31,7 +31,7 @@ const {
 const { empModule } = require("../models/user");
 
 const allowedOrigins = [
-    'http://localhost:5173',      // Localhost for development
+    'http://localhost:10000',      // Localhost for development
     'https://hrms.devopsfarm.in'  // Production URL
   ];
   
