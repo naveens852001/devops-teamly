@@ -97,13 +97,25 @@ app.get("/verify", verifyUser, (req, res) => {
   return res.json({ Status: true, role: req.role, id: req.id });
 });
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// Fallback to serve index.html for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+// Serve static files from the React app (dist folder)
+const distPath = path.join(__dirname, "../client/dist");
+app.use(express.static(distPath));
+
+// Debugging to check if `index.html` is available
+app.get("*", (req, res) => {
+  const indexFilePath = path.join(distPath, "index.html")
+  fs.access(indexFilePath, fs.constants.F_OK, (err) => {
+    if (err) {
+      console.error("index.html not found:", indexFilePath);
+      return res.status(404).send("index.html not found");
+    } else {
+      console.log("index.html found, sending file:", indexFilePath);
+      res.sendFile(indexFilePath);
+    }
+  });
 });
+
 // Start server
 server.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
