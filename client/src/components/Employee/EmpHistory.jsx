@@ -80,7 +80,7 @@ const EmploymentForm = () => {
                 <div className="w-full md:w-1/2 px-2 mb-4">
                     <div className="bg-gray-200 p-4 rounded-lg shadow-sm transform transition-transform duration-300 hover:scale-105">
                         <h2 className="text-center mb-4 text-xl font-semibold text-gray-900 flex items-center justify-center">
-                            <i className="bi bi-clock-history text-2xl mr-2"></i>
+                            <i className="bi bi-clock-history text-2xl mr-2" />
                             Employment History
                         </h2>
                         <form onSubmit={handleSubmit}>
@@ -143,7 +143,7 @@ const EmploymentForm = () => {
                                             rows="3"
                                             value={employment.jobDescription}
                                             onChange={(event) => handleInputChange(index, event)}
-                                        ></textarea>
+                                         />
                                     </div>
                                 </div>
                             ))}

@@ -82,7 +82,7 @@ const EventScheduler = () => {
     {/* Event Log */}
     <div className="w-full md:w-1/4 lg:w-2/3 mx-auto bg-gray-100 shadow-lg rounded-lg p-4 max-h-[500px] overflow-y-auto transform transition-transform duration-300 hover:scale-105">
       <h3 className="text-center text-xl font-semibold text-blue-600 flex items-center justify-center mb-2">
-        <i className="bi bi-calendar-event text-2xl mr-2"></i> Event Log
+        <i className="bi bi-calendar-event text-2xl mr-2" /> Event Log
       </h3>
       <hr className="my-2" />
       <div className="overflow-x-auto">

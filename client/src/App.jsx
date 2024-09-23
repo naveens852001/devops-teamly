@@ -43,7 +43,7 @@ function App() {
       <UserProvider> {/* Wrap your app with UserProvider */}
         <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
         <Routes>
-          <Route path='/' element={<Start />} ></Route>
+          <Route path='/' element={<Start />}  />
           <Route path='/employee_login' element={<EmployeeLogin />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<AdminRegistration />} />
@@ -57,16 +57,16 @@ function App() {
                 <Dashboard />
             </PrivateRoute>
           } >
-            <Route path='/dashboard' element={<Home />} ></Route>
+            <Route path='/dashboard' element={<Home />}  />
             <Route path='/dashboard/chat-teamly/' element={<Chatteamly/>} />
-            <Route path='/dashboard/employee' element={<Employee />} ></Route>
-            <Route path='/dashboard/add_employee/' element={<AddEmployee />} ></Route>
-            <Route path='/dashboard/edit_employee/:id' element={<EditEmployee />} ></Route>
-            <Route path='/dashboard/leave_request/' element={<LeaveRequestsAdmin />} ></Route>
-            <Route path='/dashboard/EventScheduler' element={<EventScheduler />} ></Route>
-            <Route path='/dashboard/payroll' element={<PayrollDisplay />} ></Route>
-            <Route path='/dashboard/editAdmin/:id' element={<EditAdmin />} ></Route>
-            <Route path='/dashboard/empenroll' element={<EmpEnroll />} ></Route>
+            <Route path='/dashboard/employee' element={<Employee />}  />
+            <Route path='/dashboard/add_employee/' element={<AddEmployee />}  />
+            <Route path='/dashboard/edit_employee/:id' element={<EditEmployee />}  />
+            <Route path='/dashboard/leave_request/' element={<LeaveRequestsAdmin />}  />
+            <Route path='/dashboard/EventScheduler' element={<EventScheduler />}  />
+            <Route path='/dashboard/payroll' element={<PayrollDisplay />}  />
+            <Route path='/dashboard/editAdmin/:id' element={<EditAdmin />}  />
+            <Route path='/dashboard/empenroll' element={<EmpEnroll />}  />
 
           </Route>
 
@@ -74,7 +74,7 @@ function App() {
           <Route path='chat-teamly/:id' element={<EmployeeChat/>} />
             <Route path='employee_detail/:id' element={<EmployeeDetail />} />
             <Route path='employee_update/:id' element={<UpdateEmployee />} />
-            <Route path='LeaveReq/:id' element={<LeaveReq />} ></Route>
+            <Route path='LeaveReq/:id' element={<LeaveReq />}  />
             <Route path='EmpHisory/:id' element={<EmpHistory />} />
             <Route path='EventSchedule/:id' element={<EventSchedule />} />
             <Route path='TrainingModules/:id' element={<ModuleDashboard />} />

@@ -68,7 +68,7 @@ function Chatteamly() {
                 alt={`Chat Member ${index + 1}`}
                   className="w-full h-full rounded-full object-cover border-2 border-gray-200 transform transition-transform duration-300 hover:scale-90"
                 />
-              <div className="absolute bottom-1 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+              <div className="absolute bottom-1 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
               </div>
           ))}
         </div>

@@ -195,7 +195,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
         <div className="lg:w-1/2 p-2 md:w-2/6 mt-2  ">
           <div className="rounded-lg p-4 bg-white  shadow-lg transform transition-transform duration-300 hover:scale-105">
             <div className="flex items-center bg-gray-800 text-white rounded-t-lg p-3">
-              <i className=" bi-currency-rupee text-white text-2xl"></i>
+              <i className=" bi-currency-rupee text-white text-2xl" />
               <h5 className="text-xl font-bold">Update Personal Information</h5>
             </div>
             <form>
@@ -428,7 +428,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
         <div className="lg:w-1/2 md:w-3/5 p-2 mt-2">
           <div className="rounded-lg p-4 bg-white shadow-lg transform transition-transform duration-300 hover:scale-105">
             <div className="flex items-center bg-gray-800 text-white rounded-t-lg p-3">
-              <i className="bi bi-currency-rupee text-2xl mx-2"></i>
+              <i className="bi bi-currency-rupee text-2xl mx-2" />
               <h5 className="text-xl font-bold">
                 Financial and Education Information
               </h5>

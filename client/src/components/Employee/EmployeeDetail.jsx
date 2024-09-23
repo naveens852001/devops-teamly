@@ -94,7 +94,7 @@ const EmployeeDetail = () => {
       <div className="w-full md:w-1/3 px-2 mb-4">
         <div className="text-white border-2 border-gray-500 text-center rounded-lg py-5 employee-card bg-logo-gradient transform transition-transform duration-300 hover:scale-105">
           <div className="font-montserrat text-xl">
-            <i className="bi bi-envelope"></i> E-Mail
+            <i className="bi bi-envelope" /> E-Mail
           </div>
           <div>
             <p className="font-montserrat">{employee.email}</p>
@@ -105,7 +105,7 @@ const EmployeeDetail = () => {
       <div className="w-full md:w-1/3 px-2 mb-4">
         <div className="text-center rounded-lg py-5 bg-logo-gradient border-2 border-gray-500 transform transition-transform duration-300 hover:scale-105 text-white">
           <div className="font-montserrat text-xl">
-            <i className="bi bi-person-badge"></i> Position
+            <i className="bi bi-person-badge" /> Position
           </div>
           <div>
             <p className="font-montserrat text-xl">{employee.position}</p>
@@ -116,7 +116,7 @@ const EmployeeDetail = () => {
       <div className="w-full md:w-1/3 px-2 mb-4">
         <div className="rounded-lg py-5 text-center bg-logo-gradient border-2 border-gray-500 transform transition-transform duration-300 hover:scale-105 text-white">
           <div className="font-montserrat text-xl">
-            <i className="bi bi-file-post"></i> Department
+            <i className="bi bi-file-post" /> Department
           </div>
           <div>
             <p className="font-montserrat text-xl">{employee.category}</p>
