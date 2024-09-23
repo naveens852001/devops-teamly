@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const http = require("http");
 const path = require("path");
-// const { Server } = require("socket.io");
+const { Server } = require("socket.io");
 
 // Database connection
 const MONGODB_URL = process.env.MONGODB_URL;
@@ -66,32 +66,32 @@ const verifyUser = (req, res, next) => {
 };
 
 // WebSocket setup
-// const employeeSocketMap = new Map();
-// const server = http.createServer(app);
-// const io = new Server(server, {
-//   cors: {
-//     origin: ['https://hrms.devopsfarm.in', 'http://localhost:5173'],
-//     methods: ["GET", "POST"],
-//     credentials: true,
-//   },
-// });
+const employeeSocketMap = new Map();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: ['https://hrms.devopsfarm.in', 'http://localhost:5173'],
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
 
-// io.on("connection", (socket) => {
-//   console.log("User connected", socket.id);
+io.on("connection", (socket) => {
+  console.log("User connected", socket.id);
 
-//   socket.on("message", (data) => {
-//     io.emit("receive-message", data);
-//   });
+  socket.on("message", (data) => {
+    io.emit("receive-message", data);
+  });
 
-//   socket.on("disconnect", () => {
-//     for (const [employeeId, socketId] of employeeSocketMap.entries()) {
-//       if (socketId === socket.id) {
-//         employeeSocketMap.delete(employeeId);
-//         break;
-//       }
-//     }
-//   });
-// });
+  socket.on("disconnect", () => {
+    for (const [employeeId, socketId] of employeeSocketMap.entries()) {
+      if (socketId === socket.id) {
+        employeeSocketMap.delete(employeeId);
+        break;
+      }
+    }
+  });
+});
 
 
 
@@ -112,6 +112,6 @@ app.get("/verify", verifyUser, (req, res) => {
 //   res.sendFile(path.resolve(__dirname,"../client/dist","index.html"));
 // })
 // Start server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
 });
