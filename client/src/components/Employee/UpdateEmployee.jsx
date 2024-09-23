@@ -173,7 +173,7 @@ const UpdateEmployee = () => {
         .then((result) => {
           if (result.data.Status) {
             toast.success("Employee updated successfully!");
-            navigate(`/EmpDashboard/employee_detail/` + id);
+            navigate("/EmpDashboard/employee_detail/" + id);
           } else {
             toast.error(result.data.Message || "Failed to update employee");
           }
