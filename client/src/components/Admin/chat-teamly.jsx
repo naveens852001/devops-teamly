@@ -10,7 +10,7 @@ function Chatteamly() {
   const [message, setMessage] = useState("");
   const [newMessages, setNewMessages] = useState([]);
   const [socketId, setSocketId] = useState("");
-  const socket = useMemo(() => io(`http://localhost:10000`), []);
+  const socket = useMemo(() => io("http://localhost:10000"), []);
 
   const messagesEndRef = useRef(null);
 

@@ -175,7 +175,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
         .put(`${apiUrl}/edit_admin/` + id, updatedEmployee)
         .then((result) => {
           if (result.data.Status) {
-            navigate(`/dashboard`);
+            navigate("/dashboard");
           } else {
             alert(result.data.Error);
           }
