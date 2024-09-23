@@ -33,13 +33,13 @@ const Dashboard = () => {
 
   const menuItems = [
     { to: "/dashboard", icon: <BsSpeedometer2 />, label: "Dashboard" },
-    { to: "/dashboard/chat-teamly", icon: <IoMdChatbubbles />, label: "Chat-Teamly" },
+    // { to: "/dashboard/chat-teamly", icon: <IoMdChatbubbles />, label: "Chat-Teamly" },
     { to: "/dashboard/employee", icon: <BsPeopleFill />, label: "Manage Employees" },
     { to: "/dashboard/leave_request", icon: <SlCalender />, label: "Leave Requests" },
     { to: "/dashboard/payroll", icon: <BsCreditCard2FrontFill />, label: "Payroll" },
     { to: "/dashboard/EventScheduler", icon: <MdOutlineEventAvailable />, label: "Event Schedule" },
     { to: "/dashboard/empenroll", icon: <PiChalkboardSimpleDuotone />, label: "Employee Onboarding" },
-    { to: `/dashboard/editAdmin/${userId}`, icon: <CgProfile />, label: "Profile" },
+    { to: `/dashboard/editAdmin/${userId}`, icon: <CgProfile />, label: "Profile"},
   ];
 
   return (

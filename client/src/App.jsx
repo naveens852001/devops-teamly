@@ -33,29 +33,48 @@ import ForgotPassword from './components/Pages/forgot-password.jsx';
 import ResetPassword from './components/Pages/ResetPassword.jsx';
 import EmpForgotPassword from './components/Pages/emp-forgot-password.jsx';
 
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
 axios.defaults.withCredentials = true;
 
 function App() {
   return (
     <BrowserRouter>
-      <UserProvider> {/* Wrap your app with UserProvider */}
+      <UserProvider>
         <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
         <Routes>
+<<<<<<< naveen-hrm
+          {/* Public Routes */}
+          <Route path='/' element={<Start />} />
+=======
           <Route path='/' element={<Start />}  />
+>>>>>>> main
           <Route path='/employee_login' element={<EmployeeLogin />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<AdminRegistration />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/emp-forgot-password" element={<EmpForgotPassword/>} />
+          <Route path="/emp-forgot-password" element={<EmpForgotPassword />} />
           <Route path="/emp-reset-password" element={<ResetPassword />} />
 
+          {/* Admin Dashboard Routes */}
           <Route path='/dashboard' element={
             <PrivateRoute>
-                <Dashboard />
+              <Dashboard />
             </PrivateRoute>
+<<<<<<< naveen-hrm
+          }>
+            <Route index element={<Home />} />
+            <Route path='chat-teamly/' element={<Chatteamly />} />
+            <Route path='employee' element={<Employee />} />
+            <Route path='add_employee/' element={<AddEmployee />} />
+            <Route path='edit_employee/:id' element={<EditEmployee />} />
+            <Route path='leave_request/' element={<LeaveRequestsAdmin />} />
+            <Route path='EventScheduler' element={<EventScheduler />} />
+            <Route path='payroll' element={<PayrollDisplay />} />
+            <Route path='editAdmin/:id' element={<EditAdmin />} />
+            <Route path='empenroll' element={<EmpEnroll />} />
+=======
           } >
             <Route path='/dashboard' element={<Home />}  />
             <Route path='/dashboard/chat-teamly/' element={<Chatteamly/>} />
@@ -68,13 +87,19 @@ function App() {
             <Route path='/dashboard/editAdmin/:id' element={<EditAdmin />}  />
             <Route path='/dashboard/empenroll' element={<EmpEnroll />}  />
 
+>>>>>>> main
           </Route>
 
-          <Route path='/EmpDashboard' element={<EmpDashboard />} >
-          <Route path='chat-teamly/:id' element={<EmployeeChat/>} />
+          {/* Employee Dashboard Routes */}
+          <Route path='/EmpDashboard' element={<EmpDashboard />}>
+            <Route path='chat-teamly/:id' element={<EmployeeChat />} />
             <Route path='employee_detail/:id' element={<EmployeeDetail />} />
             <Route path='employee_update/:id' element={<UpdateEmployee />} />
+<<<<<<< naveen-hrm
+            <Route path='LeaveReq/:id' element={<LeaveReq />} />
+=======
             <Route path='LeaveReq/:id' element={<LeaveReq />}  />
+>>>>>>> main
             <Route path='EmpHisory/:id' element={<EmpHistory />} />
             <Route path='EventSchedule/:id' element={<EventSchedule />} />
             <Route path='TrainingModules/:id' element={<ModuleDashboard />} />
