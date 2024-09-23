@@ -26,55 +26,57 @@ import EventSchedule from './components/Employee/EventSchedule.jsx';
 import AdminRegistration from './components/Pages/AdminRegistration.jsx';
 import EmpEnroll from './components/Admin/Enrollment.jsx';
 import ModuleDashboard from './components/Employee/Module.jsx';
-// import Chatteamly from './components/Admin/chat-teamly.jsx';
+import Chatteamly from './components/Admin/chat-teamly.jsx';
 import { UserProvider } from './UserContext';
-// import EmployeeChat from './components/Employee/chat-teamly.jsx';
+import EmployeeChat from './components/Employee/chat-teamly.jsx';
 import ForgotPassword from './components/Pages/forgot-password.jsx';
 import ResetPassword from './components/Pages/ResetPassword.jsx';
 import EmpForgotPassword from './components/Pages/emp-forgot-password.jsx';
 
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
+const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
 axios.defaults.withCredentials = true;
 
 function App() {
   return (
     <BrowserRouter>
-      <UserProvider> {/* Wrap your app with UserProvider */}
+      <UserProvider>
         <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
         <Routes>
-          <Route path='/' element={<Start />} ></Route>
+          {/* Public Routes */}
+          <Route path='/' element={<Start />} />
           <Route path='/employee_login' element={<EmployeeLogin />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<AdminRegistration />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/emp-forgot-password" element={<EmpForgotPassword/>} />
+          <Route path="/emp-forgot-password" element={<EmpForgotPassword />} />
           <Route path="/emp-reset-password" element={<ResetPassword />} />
 
+          {/* Admin Dashboard Routes */}
           <Route path='/dashboard' element={
             <PrivateRoute>
-                <Dashboard />
+              <Dashboard />
             </PrivateRoute>
-          } >
-            <Route path='/dashboard' element={<Home />} ></Route>
-            <Route path='/dashboard/chat-teamly/' element={<Chatteamly/>} />/
-            <Route path='/dashboard/employee' element={<Employee />} ></Route>
-            <Route path='/dashboard/add_employee/' element={<AddEmployee />} ></Route>
-            <Route path='/dashboard/edit_employee/:id' element={<EditEmployee />} ></Route>
-            <Route path='/dashboard/leave_request/' element={<LeaveRequestsAdmin />} ></Route>
-            <Route path='/dashboard/EventScheduler' element={<EventScheduler />} ></Route>
-            <Route path='/dashboard/payroll' element={<PayrollDisplay />} ></Route>
-            <Route path='/dashboard/editAdmin/:id' element={<EditAdmin />} ></Route>
-            <Route path='/dashboard/empenroll' element={<EmpEnroll />} ></Route>
-
+          }>
+            <Route index element={<Home />} />
+            <Route path='chat-teamly/' element={<Chatteamly />} />
+            <Route path='employee' element={<Employee />} />
+            <Route path='add_employee/' element={<AddEmployee />} />
+            <Route path='edit_employee/:id' element={<EditEmployee />} />
+            <Route path='leave_request/' element={<LeaveRequestsAdmin />} />
+            <Route path='EventScheduler' element={<EventScheduler />} />
+            <Route path='payroll' element={<PayrollDisplay />} />
+            <Route path='editAdmin/:id' element={<EditAdmin />} />
+            <Route path='empenroll' element={<EmpEnroll />} />
           </Route>
 
-          <Route path='/EmpDashboard' element={<EmpDashboard />} >
-          <Route path='chat-teamly/:id' element={<EmployeeChat/>} />
+          {/* Employee Dashboard Routes */}
+          <Route path='/EmpDashboard' element={<EmpDashboard />}>
+            <Route path='chat-teamly/:id' element={<EmployeeChat />} />
             <Route path='employee_detail/:id' element={<EmployeeDetail />} />
             <Route path='employee_update/:id' element={<UpdateEmployee />} />
-            <Route path='LeaveReq/:id' element={<LeaveReq />} ></Route>
+            <Route path='LeaveReq/:id' element={<LeaveReq />} />
             <Route path='EmpHisory/:id' element={<EmpHistory />} />
             <Route path='EventSchedule/:id' element={<EventSchedule />} />
             <Route path='TrainingModules/:id' element={<ModuleDashboard />} />
