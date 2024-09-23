@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
 
 });
 
-const newEmployeeSchema = new mongoose.Schema({
+const EmployeeSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
@@ -90,7 +90,7 @@ const trainingModuleSchema = new mongoose.Schema({
 const employeeModuleSchema = new mongoose.Schema({
   employeeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'newEmployee',
+    ref: 'AllEmployees',
     required: true
   },
   moduleId: {
@@ -106,8 +106,8 @@ const employeeModuleSchema = new mongoose.Schema({
 
 
 
-const userModel = mongoose.model("User", userSchema)
-const newEmployeeModel = mongoose.model("newEmployee", newEmployeeSchema)
+const AdminModel = mongoose.model("Admin", adminSchema)
+const AllEmployeeModel = mongoose.model("AllEmployees", EmployeeSchema)
 const LeaveModel = mongoose.model("newLeave", LeaveSchema)
 const HisotryModel = mongoose.model("newHistory", HistorySchema)
 const eventModel = mongoose.model("newEvent", eventSchema)
@@ -115,4 +115,4 @@ const Position = mongoose.model('Position', positionSchema);
 const TrainingModule = mongoose.model('TrainingModule', trainingModuleSchema);
 const empModule = mongoose.model('empModule', employeeModuleSchema);
 
-module.exports = { userModel, newEmployeeModel, LeaveModel, HisotryModel, eventModel, Position, TrainingModule, empModule };
+module.exports = { AdminModel, AllEmployeeModel, LeaveModel, HisotryModel, eventModel, Position, TrainingModule, empModule };

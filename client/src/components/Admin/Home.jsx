@@ -213,7 +213,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   ))}
                 </ul>
               ) : (
-                <p>No past leave records.</p>
+                <p className="text-sm px-2">No past leave records.</p>
               )}
             </div>
           </div>

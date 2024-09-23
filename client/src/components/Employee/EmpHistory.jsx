@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
 const EmploymentForm = () => {
-    const apiUrl = import.meta.env.VITE_API_URL ;
+    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
     const { id } = useParams();
     const [employments, setEmployments] = useState([
         { companyName: '', jobTitle: '', startDate: '', endDate: '', jobDescription: '', userId: id }

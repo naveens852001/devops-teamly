@@ -45,8 +45,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Start />} ></Route>
           <Route path='/employee_login' element={<EmployeeLogin />} />
-          <Route path='/adminlogin' element={<Login />} />
-          <Route path='/adminRegister' element={<AdminRegistration />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<AdminRegistration />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/emp-forgot-password" element={<EmpForgotPassword/>} />

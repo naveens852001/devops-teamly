@@ -251,8 +251,8 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   </label>
                   <input
                     type="password"
-                    className={`form-input h-10 px-2 mt-1 block w-full ${
-                      errors.password ? "border-red-500" : "bg-gray-100"
+                    className={`form-input h-10 px-2 mt-1 block w-full  ${
+                      errors.password ? " border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="inputPassword"
                     value={employee.password}
@@ -279,7 +279,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="text"
                     className={`form-input h-10 px-2 mt-1 block w-full ${
-                      errors.city ? "border-red-500" : "bg-gray-100"
+                      errors.city ? " border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="inputCity"
                     value={employee.city}
@@ -303,7 +303,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="text"
                     className={`form-input h-10 px-2 mt-1 block w-full ${
-                      errors.State ? "border-red-500" : "bg-gray-100"
+                      errors.State ? "border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="inputState"
                     value={employee.State}
@@ -327,7 +327,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="text"
                     className={`form-input h-10 px-2 mt-1 block w-full ${
-                      errors.country ? "border-red-500" : "bg-gray-100"
+                      errors.country ? " border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="inputCountry"
                     value={employee.Country}
@@ -354,7 +354,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="date"
                     className={`form-input h-10 p-2 mt-1 block w-full ${
-                      errors.dob ? "border-red-500" : "bg-gray-100"
+                      errors.dob ? "border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="inputDOB"
                     value={employee.dob}
@@ -376,7 +376,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   </label>
                   <select
                     className={`form-input h-10 px-2 mt-1 block w-full ${
-                      errors.gender ? "border-red-500" : "bg-gray-100"
+                      errors.gender ? " border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="inputGender"
                     value={employee.gender}
@@ -405,7 +405,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="tel"
                     className={`form-input h-10 p-2 mt-1 block w-full ${
-                      errors.mobilenumber ? "border-red-500" : "bg-gray-100"
+                      errors.mobilenumber ? " border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="inputMnumber"
                     value={employee.mobilenumber}
@@ -446,7 +446,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="number"
                     className={`form-input h-10 px-2 mt-1 block w-full ${
-                      errors.salary ? "border-red-500" : "bg-gray-100"
+                      errors.salary ? " border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="inputSalary"
                     value={employee.salary}
@@ -457,7 +457,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                     }
                   />
                   {errors.salary && (
-                    <p className="text-red-500 text-xs mt-1">{errors.salary}</p>
+                    <p className=" border text-red-500 text-xs mt-1">{errors.salary}</p>
                   )}
                 </div>
 
@@ -471,7 +471,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="text"
                     className={`form-input h-10 px-2 mt-1 block w-full ${
-                      errors.AadharID ? "border-red-500" : "bg-gray-100"
+                      errors.AadharID ? " border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="AadharID"
                     value={employee.AadharID}
@@ -498,7 +498,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="text"
                     className={`form-input h-10 px-2 mt-1 block w-full ${
-                      errors.PanCard ? "border-red-500" : "bg-gray-100"
+                      errors.PanCard ? "border border-red-500" : "bg-gray-100"
                     } text-gray-700`}
                     id="PanCard"
                     value={employee.PanCard}
@@ -526,7 +526,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="text"
                     className={`border h-10 p-2 form-input mt-1 block w-full ${
-                      errors.bankAccount ? "border-red-500" : ""
+                      errors.bankAccount ? " border  border-red-500" : ""
                     }`}
                     id="inputBankAccount"
                     value={employee.bankAccount}
@@ -536,7 +536,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                     }
                   />
                   {errors.bankAccount && (
-                    <p className="text-red-500 text-sm mt-1">
+                    <p className="border text-red-500 text-sm mt-1">
                       {errors.bankAccount}
                     </p>
                   )}
@@ -549,7 +549,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="text"
                     className={`border h-10 p-2 form-input mt-1 block w-full ${
-                      errors.taxId ? "border-red-500" : ""
+                      errors.taxId ? " border border-red-500" : ""
                     }`}
                     id="inputTaxID"
                     value={employee.taxId}
@@ -559,7 +559,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                     }
                   />
                   {errors.taxId && (
-                    <p className="text-red-500 text-sm mt-1">{errors.taxId}</p>
+                    <p className="border text-red-500 text-sm mt-1">{errors.taxId}</p>
                   )}
                 </div>
 
@@ -570,7 +570,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                   <input
                     type="text"
                     className={`border h-10 p-2 form-input mt-1 block w-full ${
-                      errors.IFSC ? "border-red-500" : ""
+                      errors.IFSC ? " border border-red-500" : ""
                     }`}
                     id="inputIFSC"
                     value={employee.IFSC}
@@ -580,7 +580,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                     }
                   />
                   {errors.IFSC && (
-                    <p className="text-red-500 text-sm mt-1">{errors.IFSC}</p>
+                    <p className=" text-red-500 text-sm mt-1">{errors.IFSC}</p>
                   )}
                 </div>
               </div>

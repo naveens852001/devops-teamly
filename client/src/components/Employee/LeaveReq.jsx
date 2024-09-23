@@ -6,7 +6,7 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 const LeaveReq = () => {
-  const apiUrl = import.meta.env.VITE_API_URL ;
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [employee, setEmployee] = useState({});
@@ -83,23 +83,40 @@ const LeaveReq = () => {
   };
 
   const handleSubmit = (event) => {
-    if (new Date(leave.fromDate) >= new Date(leave.toDate)) {
-      toast.error("Start date must be before the end date.");
-      return;
+    event.preventDefault(); // Prevent default form submission
+
+    const startDate = new Date(leave.fromDate);
+    const endDate = new Date(leave.toDate);
+    
+    // Check if the leave is for one day
+    if (startDate.getTime() === endDate.getTime()) {
+        toast.success("Leave request for one day submitted successfully");
+    } else if (startDate >= endDate) {
+        toast.error("Start date must be before the end date.");
+        return;
     }
+
     axios
       .post(`${apiUrl}/employee/leave_request`, leave)
       .then((result) => {
         if (result.data.Status) {
-          navigate(`${apiUrl}/EmpDashboard/LeaveReq/${id}`);
+          // Use relative path to navigate to the dashboard
+          navigate(`/EmpDashboard/LeaveReq/${employee._id}`);
           toast.success("Leave request submitted successfully");
-          setLeave("");
+          setLeave({
+            name: employee.name,
+            empid: employee._id,
+            fromDate: "",
+            toDate: "",
+            reason: "",
+            email: employee.email,
+          });
         } else {
           toast.error(result.data.error);
         }
       })
       .catch((err) => console.log(err));
-  };
+};
 
   const pendingRequests = leaveRequests.filter(
     (request) => request.status === "Pending"

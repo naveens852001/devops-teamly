@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
-   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
+   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
 
     const navigate = useNavigate();
     
@@ -27,7 +27,13 @@ const Registration = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${apiUrl}/register`, formData);
+            const response = await axios.post(`${apiUrl}/register`, formData, {
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache',
+                    'Expires': '0',
+                }
+            });
             if (response.data.Status) {
                 toast.success("Registration successful!");
                 navigate('/');

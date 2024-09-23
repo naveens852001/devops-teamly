@@ -1,5 +1,6 @@
 const express = require("express");
 require('dotenv').config();
+
 const PORT = process.env.PORT || 10000;
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -21,11 +22,11 @@ const app = express();
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
-   
-      'http://localhost:10000',
+      "http://localhost:1000",
+      'http://localhost:5173',
       'https://hrms.devopsfarm.in'
     ];
-    console.log('Request Origin:', origin);
+    
 
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -39,6 +40,11 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Middleware to serve static files from the "dist" directory
+app.use(express.static(path.join(__dirname, '../client/dist')));
 // const __dirname=path.resolve();
 
 // JWT verification middleware
@@ -101,10 +107,10 @@ app.get("/verify", verifyUser, (req, res) => {
 });
 
 
-app.use(express.static(path.join(__dirname,"../client/dist")))
-app.get("*",(req,res)=>{
-  res.sendFile(path.resolve(__dirname,"../client/dist","index.html"));
-})
+// app.use(express.static(path.join(__dirname,"../client/dist")))
+// app.get("*",(req,res)=>{
+//   res.sendFile(path.resolve(__dirname,"../client/dist","index.html"));
+// })
 // Start server
 server.listen(PORT, () => {
   console.log(`Listening at port ${PORT}`);
