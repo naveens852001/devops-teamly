@@ -99,7 +99,7 @@ const Dashboard = () => {
           `,
         }}
       >
-        <div className="absolute inset-0 backdrop-blur-md bg-black/30"></div>
+        <div className="absolute inset-0 backdrop-blur-md bg-black/30" />
         <div className="relative z-10">
           <Outlet />
         </div>

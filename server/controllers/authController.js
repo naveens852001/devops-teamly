@@ -171,7 +171,7 @@ const registerAdmin = async (req, res) => {
 
         ) {
             return res.json({
-                Error: `Input Argument is required`,
+                Error: "Input Argument is required",
             });
         }
         if (password.length < 6) {
@@ -239,7 +239,7 @@ const addEmployee = async (req, res) => {
             !category
         ) {
             return res.json({
-                Error: `Input Argument is required`,
+                Error: "Input Argument is required",
             });
         }
         if (password.length < 6) {

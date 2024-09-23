@@ -168,7 +168,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
         <div className="bg-gradient-to-r from-pink-600 via-pink-500 to-pink-400 text-white rounded-lg shadow-md p-4 flex flex-col justify-center transform transition-transform duration-300 hover:scale-105">
           <div className="flex items-center">
-            <i className="bi bi-people-fill mr-2 text-2xl"></i>
+            <i className="bi bi-people-fill mr-2 text-2xl" />
             <h5 className="font-montserrat text-xl">Employee</h5>
           </div>
           <div className="text-lg font-semibold ml-2 mt-2">
@@ -179,7 +179,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
         <div className="relative bg-gradient-to-tr from-[#1b7e69] via-[#276b5c] to-[#2f3332] text-white h-32 rounded-lg shadow-md p-4 flex flex-col transform transition-transform duration-300 hover:scale-105 space-y-4 max-h-96 overflow-y-auto">
           <div className="">
             <div className="flex items-center">
-              <i className="bi bi-calendar-check mr-2 text-2xl"></i>
+              <i className="bi bi-calendar-check mr-2 text-2xl" />
               <h5 className="font-montserrat text-xl mt-4">Upcoming Leave:</h5>
             </div>
             {leaves.upcoming.length > 0 ? (
@@ -232,7 +232,7 @@ const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M19 9l-7 7-7-7"
-              ></path>
+               />
             </svg>
           </div>
         </div>

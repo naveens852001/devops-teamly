@@ -9,7 +9,7 @@ function EmployeeChat({ employeeId }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [socketId, setSocketId] = useState(null); // State to store socketId
-  const socket = useMemo(() => io(`http://localhost:10000`), []);
+  const socket = useMemo(() => io("http://localhost:10000"), []);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -63,7 +63,7 @@ function EmployeeChat({ employeeId }) {
                 alt={`Chat Member ${index + 1}`}
                   className="w-full h-full rounded-full object-cover border-2 border-gray-200 transform transition-transform duration-300 hover:scale-90"
                 />
-              <div className="absolute bottom-1 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></div>
+              <div className="absolute bottom-1 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
               </div>
           ))}
         </div>
@@ -73,9 +73,7 @@ function EmployeeChat({ employeeId }) {
       {isChatOpen && (
         <div className="chat-section bg-gray-200 mt-5 lg:w-7/12 h-[400px] max-h-[500px] rounded-lg mx-auto shadow-lg flex flex-col">
           <div className="chat-heading flex justify-between items-center px-4 py-2 bg-white rounded-t-lg shadow-md">
-            <h5 className="font-montserrat text-xl font-medium text-gray-800">
-           
-            </h5>
+            <h5 className="font-montserrat text-xl font-medium text-gray-800" />
             <div className="chat-features flex space-x-4 items-center cursor-pointer">
               <span className="text-2xl text-gray-700 hover:text-black">
                 <MdVideoCall />

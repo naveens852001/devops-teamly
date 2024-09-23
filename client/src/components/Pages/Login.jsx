@@ -25,10 +25,10 @@ function Login() {
   
       if (result.data.Status) {
         localStorage.setItem("valid", true);
-        toast.success(`Login Successful. Welcome!`);
+        toast.success("Login Successful. Welcome!");
         const id = result.data.id;
         setUserId(id);
-        navigate(`/dashboard`);
+        navigate("/dashboard");
       } else {
         toast.error("Failed To Login");
       }
