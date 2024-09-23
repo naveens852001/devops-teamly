@@ -6,7 +6,7 @@ import axios from "axios";
 import "../../style.css";
 
 const EmployeeDetail = () => {
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
   const [employee, setEmployee] = useState({});
   const [pendingLeaveRequests, setPendingLeaveRequests] = useState([]);
   const [events, setEvents] = useState([]);
@@ -82,11 +82,11 @@ const EmployeeDetail = () => {
     return null;
   };
 
-  function calculateDuration(startDate, endDate) {
-    const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  }
+  const calculateDuration = (startDate, endDate) => {
+    const duration = (endDate - startDate) / (1000 * 60 * 60 * 24); // duration in days
+    return duration === 0 ? "1 Day" : `${duration + 1} Days`; // Add 1 day to include the start day
+};
+
 
   return (
     <div className="p-5">

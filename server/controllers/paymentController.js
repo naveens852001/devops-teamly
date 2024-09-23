@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const Razorpay = require('razorpay');
-const { newEmployeeModel } = require("../models/user");
+
 
 // Initialize Razorpay instance
 const instance = new Razorpay({
@@ -42,11 +42,16 @@ const checkout = async (req, res) => {
         });
     } catch (error) {
         console.error('Error creating Razorpay order:', error);
+        if (error.response) {
+            // Log detailed error response
+            console.error('Razorpay error response:', error.response.data);
+        }
         res.status(500).json({
             success: false,
             message: 'Failed to create payment order.',
         });
     }
+    
 };
 
 // Payment Verification

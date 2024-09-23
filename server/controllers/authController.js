@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken");
 const crypto = require('crypto-js');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // const { Server } = require("socket.io");
 
-const { userModel, newEmployeeModel, LeaveModel, eventModel, Position, TrainingModule, empModule } = require("../models/user");
+const { AdminModel, AllEmployeeModel, LeaveModel, eventModel, Position, TrainingModule, empModule } = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 
 
@@ -24,7 +24,7 @@ const loginUser = async (req, res) => {
     }
 
     // Find user by email
-    const user = await userModel.findOne({ email });
+    const user = await AdminModel.findOne({ email });
     if (!user) {
       return res.status(404).json({
         error: "User not found",
@@ -76,7 +76,7 @@ const getProfile = (req, res) => {
 const getAdmin = async (req, res) => {
     try {
         const id = req.params.id;
-        const user = await userModel.find({ _id: id });
+        const user = await AdminModel.find({ _id: id });
         if (!user) {
             return res.json({
                 Error: "No Admin Found",
@@ -95,7 +95,7 @@ const getAdmin = async (req, res) => {
 const getAllAdmins = async (req, res) => {
     try {
         // Fetch all users
-        const admins = await userModel.find({});
+        const admins = await AdminModel.find({});
 
         if (admins.length === 0) {
             return res.json({
@@ -120,7 +120,7 @@ const getAllAdmins = async (req, res) => {
 const editAdmin = async (req, res) => {
     try {
         const { password, ...updateFields } = req.body;
-        const employee = await userModel.findById(req.params.id);
+        const employee = await AdminModel.findById(req.params.id);
 
         if (!employee) {
             return res.status(404).json({ Status: false, Message: "Admin not found" });
@@ -134,7 +134,7 @@ const editAdmin = async (req, res) => {
             }
         }
 
-        await userModel.findByIdAndUpdate(req.params.id, updateFields, { new: true });
+        await AdminModel.findByIdAndUpdate(req.params.id, updateFields, { new: true });
         res.json({ Status: true, Message: "Employee updated successfully" });
 
     } catch (error) {
@@ -179,14 +179,14 @@ const registerAdmin = async (req, res) => {
                 Error: "Password required should be of atleast 6 character long",
             });
         }
-        const exist = await userModel.findOne({ email: email });
+        const exist = await AdminModel.findOne({ email: email });
         if (exist) {
             return res.json({
                 Error: "E-Mail Already Occupied",
             });
         }
         const hashedPassword = await hashPassword(password);
-        const user = await userModel.create({
+        const user = await AdminModel.create({
             name,
             email,
             password: hashedPassword,
@@ -247,14 +247,14 @@ const addEmployee = async (req, res) => {
                 Error: "Password required should be of atleast 6 character long",
             });
         }
-        const exist = await newEmployeeModel.findOne({ email: email });
+        const exist = await AllEmployeeModel.findOne({ email: email });
         if (exist) {
             return res.json({
                 Error: "E-Mail Already Occupied",
             });
         }
         const hashedPassword = await hashPassword(password);
-        const user = await newEmployeeModel.create({
+        const user = await AllEmployeeModel.create({
             name,
             email,
             password: hashedPassword,
@@ -283,7 +283,7 @@ const addEmployee = async (req, res) => {
 
 const getEmployee = async (req, res) => {
     try {
-        const user = await newEmployeeModel.find({});
+        const user = await AllEmployeeModel.find({});
         if (!user) {
             return res.json({
                 Error: "No Employee Found",
@@ -300,7 +300,7 @@ const getEmployee = async (req, res) => {
 const specificEmployee = async (req, res) => {
     try {
         const id = req.params.id;
-        const user = await newEmployeeModel.find({ _id: id });
+        const user = await AllEmployeeModel.find({ _id: id });
         if (!user) {
             return res.json({
                 Error: "No Employee Found",
@@ -320,7 +320,7 @@ const specificEmployee = async (req, res) => {
 const editEmployee = async (req, res) => {
     try {
         const { password, ...updateFields } = req.body;
-        const employee = await newEmployeeModel.findById(req.params.id);
+        const employee = await AllEmployeeModel.findById(req.params.id);
 
         if (!employee) {
             return res.status(404).json({ Status: false, Message: "Employee not found" });
@@ -334,7 +334,7 @@ const editEmployee = async (req, res) => {
             }
         }
 
-        await newEmployeeModel.findByIdAndUpdate(req.params.id, updateFields, { new: true });
+        await AllEmployeeModel.findByIdAndUpdate(req.params.id, updateFields, { new: true });
         res.json({ Status: true, Message: "Employee updated successfully" });
 
     } catch (error) {
@@ -346,7 +346,7 @@ const editEmployee = async (req, res) => {
 const deleteEmployee = async (req, res) => {
     try {
         const id = req.params.id;
-        const user = await newEmployeeModel.deleteOne({ _id: id })
+        const user = await AllEmployeeModel.deleteOne({ _id: id })
         return res.json({ Status: true, Result: user })
     } catch {
         console.log(error)
@@ -355,7 +355,7 @@ const deleteEmployee = async (req, res) => {
 const deleteAdmin = async (req, res) => {
     try {
         const id = req.params.id;
-        const user = await userModel.deleteOne({ _id: id })
+        const user = await AdminModel.deleteOne({ _id: id })
         return res.json({ Status: true, Result: user })
     } catch {
         console.log(error)
@@ -363,15 +363,15 @@ const deleteAdmin = async (req, res) => {
 
 }
 const adminCount = async (req, res) => {
-    const user = await userModel.countDocuments()
+    const user = await AdminModel.countDocuments()
     return res.json({ Status: true, Result: user })
 }
 const empCount = async (req, res) => {
-    const user = await newEmployeeModel.countDocuments()
+    const user = await AllEmployeeModel.countDocuments()
     return res.json({ Status: true, Result: user })
 }
 const salCount = async (req, res) => {
-    const user = await newEmployeeModel.find();
+    const user = await AllEmployeeModel.find();
     var total = 0;
     user.forEach((e) => {
         total = total + e.salary
@@ -381,7 +381,7 @@ const salCount = async (req, res) => {
 }
 
 const adminRecords = async (req, res) => {
-    const user = await userModel.find();
+    const user = await AdminModel.find();
     return res.json({ Status: true, Result: user })
 }
 
@@ -416,7 +416,7 @@ const pendingRequest = async (req, res) => {
 }
 
 const payroll = async (req, res) => {
-    const user = await newEmployeeModel.find({})
+    const user = await AllEmployeeModel.find({})
     return res.json({ Status: true, Result: user });
 }
 
@@ -540,7 +540,7 @@ const forgotpassword= async (req, res) => {
     }
 
     try {
-        const user = await userModel.findOne({ email });
+        const user = await AdminModel.findOne({ email });
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
@@ -578,7 +578,7 @@ const resetPassword = async (req, res) => {
         const userId = decoded.id;
 
         // Find user
-        const user = await userModel.findById(userId);
+        const user = await AdminModel.findById(userId);
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }

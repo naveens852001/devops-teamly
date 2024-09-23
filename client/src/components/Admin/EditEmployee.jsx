@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 
 const EditEmployee = () => {
-   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
+   const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
     const { id } = useParams();
     const [employee, setEmployee] = useState({

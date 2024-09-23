@@ -15,6 +15,7 @@
     "@fullcalendar/react": "^6.1.11",
     "@mui/material": "^5.15.18",
     "axios": "^1.6.8",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "express": "^4.19.2",

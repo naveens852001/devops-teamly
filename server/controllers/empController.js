@@ -1,15 +1,15 @@
 const jwt = require("jsonwebtoken");
-const { newEmployeeModel, LeaveModel, HisotryModel,empModule, TrainingModule } = require("../models/user");
+const { AllEmployeeModel, LeaveModel, HisotryModel,empModule, TrainingModule } = require("../models/user");
 const { hashPassword, comparePassword } = require("../helpers/auth");
 require('dotenv').config();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 
 
 const emplogin = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await newEmployeeModel.findOne({ email: email });
+        const user = await AllEmployeeModel.findOne({ email: email });
         if (!email || !password) {
             return res.json({
                 error: "Please Enter Your Credential To Continue",
@@ -38,7 +38,7 @@ const emplogin = async (req, res) => {
 
 const empdetail = async (req, res) => {
     const id = req.params.id;
-    const user = await newEmployeeModel.findOne({ _id: id })
+    const user = await AllEmployeeModel.findOne({ _id: id })
     return res.json({ Status: true, Result: user })
 };
 
@@ -96,7 +96,7 @@ const getempHistory=async(req,res)=>{
 
 const getAllEmployees = async (req, res) => {
     try {
-        const employees = await newEmployeeModel.find({});
+        const employees = await AllEmployeeModel.find({});
         return res.json({ Status: true, Result: employees });
     } catch (error) {
         console.error('Error fetching employees:', error);
@@ -163,7 +163,7 @@ const empHistoryDelete =async(req,res)=>{
         }
     
         try {
-            const user = await newEmployeeModel.findOne({ email: new RegExp(`^${email}$`, 'i') });
+            const user = await AllEmployeeModel.findOne({ email: new RegExp(`^${email}$`, 'i') });
             if (!user) {
                 return res.status(404).json({ error: 'User not found' });
             }
@@ -202,7 +202,7 @@ const empHistoryDelete =async(req,res)=>{
             const userId = decoded.id;
     
             // Find user
-            const user = await newEmployeeModel.findById(userId);
+            const user = await AllEmployeeModel.findById(userId);
             if (!user) {
                 return res.status(404).json({ error: 'Employee not found' });
             }

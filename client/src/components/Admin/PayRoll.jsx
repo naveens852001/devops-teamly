@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const PayrollDisplay = () => {
-  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000"
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
 
   const [payrolls, setPayrolls] = useState([]);
 
@@ -13,10 +14,18 @@ const PayrollDisplay = () => {
         if (result.data.Status) {
           const payrollData = result.data.Result.map((employee) => {
             const grossSalary = employee.salary;
-            const deductions = calculateDeductions(grossSalary);
-            const netPay = grossSalary - deductions;
+  
+            // Set deductions and netPay to 0 if salary is 0
+            let deductions = 0;
+            let netPay = 0;
+  
+            if (grossSalary > 0) {
+              deductions = calculateDeductions(grossSalary);
+              netPay = grossSalary - deductions;
+            }
+  
             const paymentDate = getLastDayOfMonth();
-
+  
             return {
               ...employee,
               grossSalary,
@@ -32,6 +41,7 @@ const PayrollDisplay = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+  
 
   const calculateDeductions = (grossSalary) => {
     // Assuming Basic Salary is 50% of Gross Salary
@@ -62,19 +72,21 @@ const PayrollDisplay = () => {
   //   alert("Payroll submitted successfully!");
   // };
 
-  const checkoutHandler = async (employeeId, amount,employeeDetails) => {
+  const checkoutHandler = async (employeeId, amount, employeeDetails) => {
+    // Check if the amount is 0 or not defined
+    if (amount <= 0) {
+      toast.error("Salary is 0 or not defined. Payment cannot be processed.");
+      return; // Exit the function if salary is 0 or not defined
+    }
+  
     try {
       // Fetch the Razorpay key and create order
-      const {
-        data: { key },
-      } = await axios.get(`${apiUrl}/getkey`);
-      const {
-        data: { order },
-      } = await axios.post(`${apiUrl}/checkout`, {
+      const { data: { key } } = await axios.get(`${apiUrl}/getkey`);
+      const { data: { order } } = await axios.post(`${apiUrl}/checkout`, {
         employeeId: employeeId,
         amount: amount,
       });
-
+  
       // Prepare Razorpay options with prefilled bank account number
       const options = {
         key,
@@ -95,10 +107,10 @@ const PayrollDisplay = () => {
           color: "#056139",
         },
       };
-
+  
       // Initialize Razorpay payment window
       const razor = new window.Razorpay(options);
-
+  
       // Open Razorpay payment window
       razor.open();
     } catch (error) {
@@ -106,6 +118,7 @@ const PayrollDisplay = () => {
       // Handle errors here, maybe show a message to the admin
     }
   };
+  
 
   return (
     <div className="mt-5 pt-4 px-3">

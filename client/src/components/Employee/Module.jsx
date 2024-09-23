@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const ModuleDashboard = () => {
-  const apiUrl = import.meta.env.VITE_API_URL ;
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:10000";
   const [trainingModules, setTrainingModules] = useState([]);
   const [completedModules, setCompletedModules] = useState([]);
   const [employeeDepartment, setEmployeeDepartment] = useState('');
@@ -98,7 +98,7 @@ const ModuleDashboard = () => {
               <h3 className="lg:text-xl md:text-xl sm:text-xs font-semibold text-gray-700 mb-2">Completed Training Modules</h3>
               <ul className="space-y-2">
                 {completedModules.map((module) => (
-                  <li className="flex flex-col p-4 border border-gray-200 rounded-lg bg-gray-100" style={{ marginLeft: "-30px" }} key={module.moduleId._id}>
+                  <li className="flex flex-col mx-auto border p-4 border-gray-200 rounded-lg bg-gray-100"  key={module.moduleId._id}>
                     <p className="text-blue-600">{module.moduleId.name} - {module.moduleId.department}</p>
                     <span className="text-gray-600">Completed on: {new Date(module.completedAt).toLocaleDateString()}</span>
                   </li>
