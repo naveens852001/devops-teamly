@@ -10,7 +10,7 @@ const adminSchema = new mongoose.Schema({
   image: String,
   dob: Date,
   gender: String,
-  bankAccount: Number,
+
   mobileNumber: { type: Number, }, 
   bankAccount: { type: Number, },
   AadharID:{type:Number, match: /^\d{12}$/},
@@ -19,7 +19,7 @@ const adminSchema = new mongoose.Schema({
   taxId: Number,
   postGraduation: String,
   graduation: String,
-  mobileNumber:Number,
+  
   
 
 });
