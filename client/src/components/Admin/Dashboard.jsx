@@ -33,7 +33,7 @@ const Dashboard = () => {
 
   const menuItems = [
     { to: "/dashboard", icon: <BsSpeedometer2 />, label: "Dashboard" },
-    { to: "/dashboard/chat-teamly", icon: <IoMdChatbubbles />, label: "Chat-Teamly" },
+    // { to: "/dashboard/chat-teamly", icon: <IoMdChatbubbles />, label: "Chat-Teamly" },
     { to: "/dashboard/employee", icon: <BsPeopleFill />, label: "Manage Employees" },
     { to: "/dashboard/leave_request", icon: <SlCalender />, label: "Leave Requests" },
     { to: "/dashboard/payroll", icon: <BsCreditCard2FrontFill />, label: "Payroll" },
