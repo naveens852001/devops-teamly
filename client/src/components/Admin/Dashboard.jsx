@@ -39,7 +39,7 @@ const Dashboard = () => {
     { to: "/dashboard/payroll", icon: <BsCreditCard2FrontFill />, label: "Payroll" },
     { to: "/dashboard/EventScheduler", icon: <MdOutlineEventAvailable />, label: "Event Schedule" },
     { to: "/dashboard/empenroll", icon: <PiChalkboardSimpleDuotone />, label: "Employee Onboarding" },
-    { to: `/dashboard/editAdmin/${userId}`, icon: <CgProfile />, label: "Profile" },
+    { to: `/dashboard/editAdmin/${userId}`, icon: <CgProfile />, label: "Profile"},
   ];
 
   return (

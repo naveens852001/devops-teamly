@@ -58,7 +58,7 @@ function App() {
             </PrivateRoute>
           } >
             <Route path='/dashboard' element={<Home />} ></Route>
-            {/* <Route path='/dashboard/chat-teamly/' element={<Chatteamly/>} /> */}
+            <Route path='/dashboard/chat-teamly/' element={<Chatteamly/>} />/
             <Route path='/dashboard/employee' element={<Employee />} ></Route>
             <Route path='/dashboard/add_employee/' element={<AddEmployee />} ></Route>
             <Route path='/dashboard/edit_employee/:id' element={<EditEmployee />} ></Route>
@@ -71,7 +71,7 @@ function App() {
           </Route>
 
           <Route path='/EmpDashboard' element={<EmpDashboard />} >
-          {/* <Route path='chat-teamly/:id' element={<EmployeeChat/>} /> */}
+          <Route path='chat-teamly/:id' element={<EmployeeChat/>} />
             <Route path='employee_detail/:id' element={<EmployeeDetail />} />
             <Route path='employee_update/:id' element={<UpdateEmployee />} />
             <Route path='LeaveReq/:id' element={<LeaveReq />} ></Route>
