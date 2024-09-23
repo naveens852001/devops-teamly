@@ -131,7 +131,7 @@ const LeaveReq = () => {
       {/* Leave Request Form */}
       <div className="w-full md:w-5/12 bg-gray-200 shadow-md rounded-lg p-6 mb-4 md:mb-0">
         <header className="flex items-center justify-center mb-6">
-          <i className="bi bi-calendar text-dark text-3xl"></i>
+          <i className="bi bi-calendar text-dark text-3xl" />
           <h1 className="text-2xl font-bold ml-3 pt-1">Apply For Leave</h1>
         </header>
   
